@@ -6,9 +6,47 @@ iscore_common_setup()
 
 # Source files
 set(HDRS
+    Tutorial/Process/Executor/TutorialProcessExecutor.hpp
+    Tutorial/Process/Layer/TutorialProcessPresenter.hpp
+    Tutorial/Process/Layer/TutorialProcessView.hpp
+    Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp
+    Tutorial/Process/LocalTree/TutorialProcessLocalTree.hpp
+    Tutorial/Process/Inspector/TutorialProcessInspector.hpp
+    Tutorial/Process/State/TutorialProcessState.hpp
+    Tutorial/Process/TutorialProcessModel.hpp
+    Tutorial/Process/TutorialProcessMetadata.hpp
+    Tutorial/Process/TutorialProcessFactory.hpp
+    Tutorial/ApplicationPlugin/TutorialApplicationPlugin.hpp
+    Tutorial/Panel/TutorialPanelDelegate.hpp
+    Tutorial/Panel/TutorialPanelDelegateFactory.hpp
+    Tutorial/StateProcess/TutorialStateProcess.hpp
+    Tutorial/StateProcess/TutorialStateProcessFactory.hpp
+    Tutorial/Settings/TutorialSettingsModel.hpp
+    Tutorial/Settings/TutorialSettingsView.hpp
+    Tutorial/Settings/TutorialSettingsPresenter.hpp
+    Tutorial/Settings/TutorialSettingsFactory.hpp
+    Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp
+    Tutorial/DocumentPlugin/TutorialDocumentPluginFactory.hpp
+
     iscore_addon_tutorial.hpp
+
 )
 set(SRCS
+    Tutorial/Process/Executor/TutorialProcessExecutor.cpp
+    Tutorial/Process/Layer/TutorialProcessPresenter.cpp
+    Tutorial/Process/Layer/TutorialProcessView.cpp
+    Tutorial/Process/LocalTree/TutorialProcessLocalTree.cpp
+    Tutorial/Process/Inspector/TutorialProcessInspector.cpp
+    Tutorial/Process/State/TutorialProcessState.cpp
+    Tutorial/Process/TutorialProcessModel.cpp
+    Tutorial/ApplicationPlugin/TutorialApplicationPlugin.cpp
+    Tutorial/Panel/TutorialPanelDelegate.cpp
+    Tutorial/StateProcess/TutorialStateProcess.cpp
+    Tutorial/Settings/TutorialSettingsModel.cpp
+    Tutorial/Settings/TutorialSettingsView.cpp
+    Tutorial/Settings/TutorialSettingsPresenter.cpp
+    Tutorial/DocumentPlugin/TutorialDocumentPlugin.cpp
+
     iscore_addon_tutorial.cpp
 )
 
