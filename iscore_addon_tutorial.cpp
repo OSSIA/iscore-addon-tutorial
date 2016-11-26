@@ -17,7 +17,7 @@ iscore_addon_tutorial::~iscore_addon_tutorial()
  */
 iscore::Version iscore_addon_tutorial::version() const
 {
-    return {};
+    return iscore::Version{0};
 }
 
 /**
@@ -104,7 +104,7 @@ iscore::GUIApplicationContextPlugin*
 iscore_addon_tutorial::make_applicationPlugin(
         const iscore::GUIApplicationContext& app)
 {
-
+    return {};
 }
 
 /**

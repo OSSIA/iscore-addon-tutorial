@@ -1,5 +1,6 @@
 #pragma once
 #include <Process/Process.hpp>
+#include <Tutorial/Process/TutorialProcessMetadata.hpp>
 
 namespace Tutorial
 {

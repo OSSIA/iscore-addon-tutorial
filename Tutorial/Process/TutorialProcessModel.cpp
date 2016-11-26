@@ -16,7 +16,7 @@ ProcessModel::ProcessModel(
         const ProcessModel& source,
         const Id<Process::ProcessModel>& id,
         QObject* parent):
-    Process::ProcessModel{id, "TutorialProcess", parent}
+    Process::ProcessModel{source, id, "TutorialProcess", parent}
 {
 
 }

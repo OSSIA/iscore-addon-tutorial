@@ -12,6 +12,6 @@ TutorialView::TutorialView(
 
 void TutorialView::paint_impl(QPainter* painter) const
 {
-    painter->drawText({0, 0}, "Hello world");
+    painter->drawText(QPointF{0, 0}, "Hello world");
 }
 }

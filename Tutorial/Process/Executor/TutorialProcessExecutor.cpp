@@ -1,5 +1,7 @@
 #include "TutorialProcessExecutor.hpp"
 
+#include <Tutorial/Process/TutorialProcessModel.hpp>
+
 namespace Tutorial
 {
 
@@ -39,11 +41,11 @@ ossia::state_element ProcessExecutor::state()
 
 ProcessExecutorComponent::ProcessExecutorComponent(
         Engine::Execution::ConstraintElement& parentConstraint,
-        ProcessModel& element,
+        Tutorial::ProcessModel& element,
         const Engine::Execution::Context& ctx,
         const Id<iscore::Component>& id,
         QObject* parent):
-    Engine::Execution::ProcessComponent_T{
+    ProcessComponent_T{
           parentConstraint, element, ctx, id, "TutorialExecutorComponent", parent}
 {
 
