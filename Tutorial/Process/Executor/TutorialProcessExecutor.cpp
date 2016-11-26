@@ -1,6 +1,7 @@
 #include "TutorialProcessExecutor.hpp"
 
 #include <Tutorial/Process/TutorialProcessModel.hpp>
+#include <ossia/editor/state/state_element.hpp>
 
 namespace Tutorial
 {

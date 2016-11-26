@@ -47,7 +47,7 @@ class iscore_addon_tutorial final :
         void updateSaveFile(
                 QJsonObject& obj,
                 iscore::Version obj_version,
-                iscore::Version current_version);
+                iscore::Version current_version) override;
 
         // Defined in FactoryList_QtInterface
         std::vector<std::unique_ptr<iscore::FactoryListInterface>> factoryFamilies() override;
