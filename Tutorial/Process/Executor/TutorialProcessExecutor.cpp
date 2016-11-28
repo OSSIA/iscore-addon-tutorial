@@ -1,12 +1,17 @@
 #include "TutorialProcessExecutor.hpp"
-
 #include <Tutorial/Process/TutorialProcessModel.hpp>
+
+#include <Device/Protocol/DeviceList.hpp>
+#include <Explorer/DocumentPlugin/DeviceDocumentPlugin.hpp>
+#include <Engine/iscore2OSSIA.hpp>
 #include <ossia/editor/state/state_element.hpp>
 
 namespace Tutorial
 {
 
-ProcessExecutor::ProcessExecutor()
+ProcessExecutor::ProcessExecutor(
+        const Device::DeviceList& devices):
+    m_devices{devices}
 {
 }
 
@@ -35,7 +40,20 @@ ossia::state_element ProcessExecutor::offset(
 
 ossia::state_element ProcessExecutor::state()
 {
-    return {};
+    State::Address address{"my_device", {"a", "banana"}};
+    State::Value value = State::Value::fromValue(std::abs(qrand()) % 100);
+    State::Message m;
+    m.address = address;
+    m.value = value;
+
+    if(auto res = Engine::iscore_to_ossia::message(m, m_devices))
+    {
+        return *res;
+    }
+    else
+    {
+        return {};
+    }
 }
 
 
@@ -49,7 +67,7 @@ ProcessExecutorComponent::ProcessExecutorComponent(
     ProcessComponent_T{
           parentConstraint, element, ctx, id, "TutorialExecutorComponent", parent}
 {
-
+    m_ossia_process = new ProcessExecutor{ctx.devices.list()};
 }
 
 }

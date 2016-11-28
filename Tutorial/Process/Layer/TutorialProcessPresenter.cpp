@@ -13,6 +13,13 @@ TutorialPresenter::TutorialPresenter(
     m_layer{layer},
     m_view{view}
 {
+    const Tutorial::ProcessModel& p = layer.processModel();
+
+    con(p, &ProcessModel::bananasChanged,
+            this, [=] (int b) {
+        m_view->setText("bananas: " + QString::number(b));
+    });
+    m_view->setText("bananas: " + QString::number(p.bananas()));
 }
 
 void TutorialPresenter::setWidth(qreal val)
@@ -27,12 +34,12 @@ void TutorialPresenter::setHeight(qreal val)
 
 void TutorialPresenter::putToFront()
 {
-    m_view->setVisible(true);
+    m_view->setOpacity(1);
 }
 
 void TutorialPresenter::putBehind()
 {
-    m_view->setVisible(false);
+    m_view->setOpacity(0.2);
 }
 
 void TutorialPresenter::on_zoomRatioChanged(ZoomRatio)

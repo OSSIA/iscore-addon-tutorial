@@ -1,17 +1,16 @@
 #pragma once
-#include <Tutorial/Process/TutorialProcessModel.hpp>
-#include <Process/ProcessMetadata.hpp>
-#include <Process/LayerModel.hpp>
+#include <Tutorial/Process/Layer/TutorialProcessLayer.hpp>
+#include <Tutorial/Process/Layer/TutorialProcessPresenter.hpp>
+#include <Tutorial/Process/Layer/TutorialProcessView.hpp>
+
+#include <Process/LayerModelPanelProxy.hpp>
 
 namespace Tutorial
 {
-using Layer = Process::LayerModel_T<ProcessModel>;
+    using LayerFactory = Process::GenericLayerFactory<
+    Tutorial::ProcessModel,
+    Tutorial::Layer,
+    Tutorial::TutorialPresenter,
+    Tutorial::TutorialView,
+    Process::GraphicsViewLayerModelPanelProxy>;
 }
-
-LAYER_METADATA(
-        ,
-        Tutorial::Layer,
-        "d5dc8583-3f7f-49ae-9664-fadda04f42fa",
-        "TutorialLayer",
-        "TutorialLayer"
-        )

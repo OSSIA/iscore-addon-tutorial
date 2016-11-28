@@ -1,5 +1,15 @@
 #include "iscore_addon_tutorial.hpp"
+#include <iscore_addon_tutorial_commands_files.hpp>
 
+#include <Tutorial/Process/TutorialProcessFactory.hpp>
+#include <Tutorial/Process/Executor/TutorialProcessExecutor.hpp>
+#include <Tutorial/Process/Inspector/TutorialProcessInspector.hpp>
+#include <Tutorial/Process/LocalTree/TutorialProcessLocalTree.hpp>
+#include <Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp>
+#include <Tutorial/ApplicationPlugin/TutorialApplicationPlugin.hpp>
+#include <Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp>
+
+#include <iscore/plugins/customfactory/FactorySetup.hpp>
 
 iscore_addon_tutorial::iscore_addon_tutorial()
 {
@@ -84,14 +94,29 @@ iscore_addon_tutorial::factoryFamilies()
  * This function allows the plug-in to provide implementations for the
  * factory types provided earlier.
  *
- * For instance, facotires for the elements that will go in the toolbar.
+ * For instance, factories for the elements that will go in the toolbar.
  */
 std::vector<std::unique_ptr<iscore::FactoryInterfaceBase> >
 iscore_addon_tutorial::factories(
         const iscore::ApplicationContext& ctx,
-        const iscore::AbstractFactoryKey& factoryName) const
+        const iscore::AbstractFactoryKey& key) const
 {
-    return {};
+    return instantiate_factories<
+            iscore::ApplicationContext,
+    TL<
+        FW<Process::ProcessModelFactory,
+           Tutorial::ProcessFactory>,
+        FW<Process::LayerFactory,
+           Tutorial::LayerFactory>,
+        FW<Process::InspectorWidgetDelegateFactory,
+           Tutorial::InspectorFactory>,
+        FW<Engine::Execution::ProcessComponentFactory,
+           Tutorial::ProcessExecutorComponentFactory>,
+        FW<Engine::LocalTree::ProcessComponentFactory,
+           Tutorial::LocalTreeProcessComponentFactory>,
+        FW<iscore::DocumentPluginFactory,
+           Tutorial::DocumentPluginFactory>
+    >>(ctx, key);
 }
 
 /**
@@ -104,7 +129,7 @@ iscore::GUIApplicationContextPlugin*
 iscore_addon_tutorial::make_applicationPlugin(
         const iscore::GUIApplicationContext& app)
 {
-    return {};
+    return new Tutorial::ApplicationPlugin{app};
 }
 
 /**
@@ -115,5 +140,13 @@ iscore_addon_tutorial::make_applicationPlugin(
 std::pair<const CommandParentFactoryKey, CommandGeneratorMap>
 iscore_addon_tutorial::make_commands()
 {
-    return {};
+    using namespace Tutorial;
+    std::pair<const CommandParentFactoryKey, CommandGeneratorMap> cmds{CommandFactoryName(), CommandGeneratorMap{}};
+
+    using Types = TypeList<
+#include <iscore_addon_tutorial_commands.hpp>
+      >;
+    for_each_type<Types>(iscore::commands::FactoryInserter{cmds.second});
+
+    return cmds;
 }

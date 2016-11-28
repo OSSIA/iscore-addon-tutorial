@@ -9,7 +9,21 @@ ProcessModel::ProcessModel(
         QObject* parent):
     Process::ProcessModel{duration, id, "TutorialProcess", parent}
 {
+    metadata().setInstanceName(*this);
+}
 
+int ProcessModel::bananas() const
+{
+    return m_bananas;
+}
+
+void ProcessModel::setBananas(int bananas)
+{
+    if (m_bananas == bananas)
+        return;
+
+    m_bananas = bananas;
+    emit bananasChanged(bananas);
 }
 
 ProcessModel::ProcessModel(
@@ -80,6 +94,7 @@ template<>
 void Visitor<Reader<DataStream>>::readFrom_impl(
         const Tutorial::ProcessModel& Tutorial)
 {
+    m_stream << Tutorial.m_bananas;
     insertDelimiter();
 }
 
@@ -87,6 +102,7 @@ template<>
 void Visitor<Writer<DataStream>>::writeTo(
         Tutorial::ProcessModel& Tutorial)
 {
+    m_stream >> Tutorial.m_bananas;
     checkDelimiter();
 }
 
@@ -94,10 +110,12 @@ template<>
 void Visitor<Reader<JSONObject>>::readFrom_impl(
         const Tutorial::ProcessModel& Tutorial)
 {
+    m_obj["Bananas"] = Tutorial.m_bananas;
 }
 
 template<>
 void Visitor<Writer<JSONObject>>::writeTo(
         Tutorial::ProcessModel& Tutorial)
 {
+    Tutorial.m_bananas = m_obj["Bananas"].toInt();
 }

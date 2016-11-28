@@ -10,6 +10,7 @@ set(HDRS
     Tutorial/Process/Layer/TutorialProcessPresenter.hpp
     Tutorial/Process/Layer/TutorialProcessView.hpp
     Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp
+    Tutorial/Process/Layer/TutorialProcessLayer.hpp
     Tutorial/Process/LocalTree/TutorialProcessLocalTree.hpp
     Tutorial/Process/Inspector/TutorialProcessInspector.hpp
     Tutorial/Process/State/TutorialProcessState.hpp
@@ -27,6 +28,8 @@ set(HDRS
     Tutorial/Settings/TutorialSettingsFactory.hpp
     Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp
     Tutorial/DocumentPlugin/TutorialDocumentPluginFactory.hpp
+    Tutorial/Commands/AddBanana.hpp
+    Tutorial/Commands/TutorialCommandFactory.hpp
 
     iscore_addon_tutorial.hpp
 
@@ -46,6 +49,7 @@ set(SRCS
     Tutorial/Settings/TutorialSettingsView.cpp
     Tutorial/Settings/TutorialSettingsPresenter.cpp
     Tutorial/DocumentPlugin/TutorialDocumentPlugin.cpp
+    Tutorial/Commands/AddBanana.cpp
 
     iscore_addon_tutorial.cpp
 )

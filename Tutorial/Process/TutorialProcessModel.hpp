@@ -10,7 +10,10 @@ class ProcessModel final : public Process::ProcessModel
         ISCORE_SERIALIZE_FRIENDS(ProcessModel, JSONObject)
         MODEL_METADATA_IMPL(Tutorial::ProcessModel)
 
+        Q_PROPERTY(int bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
+
         Q_OBJECT
+
     public:
         ProcessModel(const TimeValue& duration,
                      const Id<Process::ProcessModel>& id,
@@ -22,6 +25,12 @@ class ProcessModel final : public Process::ProcessModel
         {
             vis.writeTo(*this);
         }
+
+        int bananas() const;
+        void setBananas(int bananas);
+
+    signals:
+        void bananasChanged(int bananas);
 
     private:
         ProcessModel(const ProcessModel& source,
@@ -41,5 +50,7 @@ class ProcessModel final : public Process::ProcessModel
         void setDurationAndScale(const TimeValue& newDuration) override;
         void setDurationAndGrow(const TimeValue& newDuration) override;
         void setDurationAndShrink(const TimeValue& newDuration) override;
+
+        int m_bananas{};
 };
 }

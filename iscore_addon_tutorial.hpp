@@ -55,7 +55,7 @@ class iscore_addon_tutorial final :
         // Defined in FactoryInterface_QtInterface
         std::vector<std::unique_ptr<iscore::FactoryInterfaceBase>> factories(
                 const iscore::ApplicationContext& ctx,
-                const iscore::AbstractFactoryKey& factoryName) const override;
+                const iscore::AbstractFactoryKey& key) const override;
 
         // Defined in GUIApplicationContextPlugin_QtInterface
         iscore::GUIApplicationContextPlugin* make_applicationPlugin(

@@ -1,5 +1,11 @@
 #pragma once
 #include <Engine/Executor/ProcessElement.hpp>
+
+namespace Device
+{
+class DeviceList;
+}
+
 namespace Tutorial
 {
 class ProcessModel;
@@ -7,7 +13,7 @@ class ProcessExecutor final :
         public ossia::time_process
 {
     public:
-        ProcessExecutor();
+        ProcessExecutor(const Device::DeviceList&);
 
         void start() override;
         void stop() override;
@@ -16,6 +22,9 @@ class ProcessExecutor final :
 
         ossia::state_element offset(ossia::time_value) override;
         ossia::state_element state() override;
+
+    private:
+        const Device::DeviceList& m_devices;
 };
 
 
@@ -35,7 +44,7 @@ class ProcessExecutorComponent final :
 };
 
 
-using ComponentFactory =
+using ProcessExecutorComponentFactory =
     Engine::Execution::ProcessComponentFactory_T<ProcessExecutorComponent>;
 
 }

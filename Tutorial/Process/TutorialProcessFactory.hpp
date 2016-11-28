@@ -2,7 +2,7 @@
 #include <Process/GenericProcessFactory.hpp>
 #include <Tutorial/Process/TutorialProcessModel.hpp>
 
-namespace Video
+namespace Tutorial
 {
 using ProcessFactory =
     Process::GenericProcessModelFactory<

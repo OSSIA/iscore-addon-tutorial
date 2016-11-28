@@ -1,4 +1,5 @@
 #include "TutorialProcessView.hpp"
+#include <Process/Style/ScenarioStyle.hpp>
 #include <QPainter>
 namespace Tutorial
 {
@@ -10,8 +11,19 @@ TutorialView::TutorialView(
 
 }
 
+void TutorialView::setText(const QString& txt)
+{
+    m_text = txt;
+    update();
+}
+
 void TutorialView::paint_impl(QPainter* painter) const
 {
-    painter->drawText(QPointF{0, 0}, "Hello world");
+    auto font = iscore::Skin::instance().MonoFont;
+    font.setPointSize(25);
+    painter->setFont(font);
+    painter->setPen(Qt::white);
+
+    painter->drawText(QPointF{5., height() / 2.}, m_text);
 }
 }

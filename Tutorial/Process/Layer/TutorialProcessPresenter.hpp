@@ -1,6 +1,6 @@
 #pragma once
 #include <Process/LayerPresenter.hpp>
-#include <Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp>
+#include <Tutorial/Process/Layer/TutorialProcessLayer.hpp>
 #include <QPoint>
 
 #include <Process/ZoomHelper.hpp>
