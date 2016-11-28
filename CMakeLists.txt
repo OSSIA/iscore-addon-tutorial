@@ -27,9 +27,13 @@ set(HDRS
     Tutorial/Settings/TutorialSettingsPresenter.hpp
     Tutorial/Settings/TutorialSettingsFactory.hpp
     Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp
-    Tutorial/DocumentPlugin/TutorialDocumentPluginFactory.hpp
     Tutorial/Commands/AddBanana.hpp
     Tutorial/Commands/TutorialCommandFactory.hpp
+    Tutorial/SimpleElement/SimpleElement.hpp
+    Tutorial/SimpleElement/SimpleEntity.hpp
+    Tutorial/PolymorphicElement/PolymorphicElement.hpp
+    Tutorial/PolymorphicElement/PolymorphicElementFactory.hpp
+    Tutorial/PolymorphicElement/Implementation/ConcretePolymorphicElement.hpp
 
     iscore_addon_tutorial.hpp
 
@@ -50,6 +54,11 @@ set(SRCS
     Tutorial/Settings/TutorialSettingsPresenter.cpp
     Tutorial/DocumentPlugin/TutorialDocumentPlugin.cpp
     Tutorial/Commands/AddBanana.cpp
+    Tutorial/SimpleElement/SimpleElement.cpp
+    Tutorial/SimpleElement/SimpleEntity.cpp
+    Tutorial/PolymorphicElement/PolymorphicElement.cpp
+    Tutorial/PolymorphicElement/PolymorphicElementFactory.cpp
+    Tutorial/PolymorphicElement/Implementation/ConcretePolymorphicElement.cpp
 
     iscore_addon_tutorial.cpp
 )

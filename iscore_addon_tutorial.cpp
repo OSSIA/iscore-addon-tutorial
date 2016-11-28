@@ -8,6 +8,9 @@
 #include <Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp>
 #include <Tutorial/ApplicationPlugin/TutorialApplicationPlugin.hpp>
 #include <Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp>
+#include <Tutorial/PolymorphicElement/PolymorphicElementFactory.hpp>
+#include <Tutorial/PolymorphicElement/Implementation/ConcretePolymorphicElement.hpp>
+#include <Tutorial/Panel/TutorialPanelDelegate.hpp>
 
 #include <iscore/plugins/customfactory/FactorySetup.hpp>
 
@@ -43,6 +46,10 @@ UuidKey<iscore::Plugin> iscore_addon_tutorial::key() const
 /**
  * @brief iscore_addon_tutorial::required
  * @return Features that this plug-in requires.
+ *
+ * If a feature is listed here, i-score will load the
+ * plug-in providing this feature (through \ref iscore::Plugin_QtInterface::offered)
+ * before this one.
  */
 QStringList iscore_addon_tutorial::required() const
 {
@@ -80,11 +87,20 @@ void iscore_addon_tutorial::updateSaveFile(
  * All plug-ins will be scanned for factories of the provided type.
  *
  * For instance, a new interface to display some elements in a toolbar.
+ *
+ * Elements registered here can then be used through an \ref iscore::ApplicationContext
+ * instance :
+ *
+ * \code
+ * auto& ctx = iscore::AppContext();
+ * auto& my_factories = ctx.components.factory<Tutorial::PolymorphicElementFactoryList>();
+ * \endcode
  */
 std::vector<std::unique_ptr<iscore::FactoryListInterface> >
 iscore_addon_tutorial::factoryFamilies()
 {
-    return {};
+    return make_ptr_vector<iscore::FactoryListInterface,
+            Tutorial::PolymorphicElementFactoryList>();
 }
 
 
@@ -95,6 +111,28 @@ iscore_addon_tutorial::factoryFamilies()
  * factory types provided earlier.
  *
  * For instance, factories for the elements that will go in the toolbar.
+ *
+ * An helper function is provided : \ref instantiate_factories .
+ *
+ * The factories registered here are then accessible like this :
+ *
+ * \code
+ * // Get a context or use an existing one
+ * auto& ctx = iscore::AppContext();
+ *
+ * // Get the list of factories that we are looking for
+ * auto& my_factories = ctx.components.factory<Process::ProcessList>();
+ *
+ * // Get the key for the actual factory we want;
+ * // Instead of doing this, it could already be saved somewhere for instance.
+ * auto process_key = Metadata<ConcreteFactoryKey_k, Tutorial::ProcessFactory>::get();
+ *
+ * // Get the actual factory
+ * auto my_process_factory = my_factories.get(process_key);
+ * \endcode
+ *
+ * However, it should rarely be necessary to access a particular factory.
+ * The general case should be getting a factory according to an user input.
  */
 std::vector<std::unique_ptr<iscore::FactoryInterfaceBase> >
 iscore_addon_tutorial::factories(
@@ -104,10 +142,14 @@ iscore_addon_tutorial::factories(
     return instantiate_factories<
             iscore::ApplicationContext,
     TL<
-        FW<Process::ProcessModelFactory,
-           Tutorial::ProcessFactory>,
-        FW<Process::LayerFactory,
-           Tutorial::LayerFactory>,
+        FW<
+           Process::ProcessModelFactory, // An abstract factory
+           Tutorial::ProcessFactory // followed by all the matching concrete factories
+          >,
+        FW<
+           Process::LayerFactory, // Another abstract factory
+           Tutorial::LayerFactory // etc...
+          >,
         FW<Process::InspectorWidgetDelegateFactory,
            Tutorial::InspectorFactory>,
         FW<Engine::Execution::ProcessComponentFactory,
@@ -115,7 +157,14 @@ iscore_addon_tutorial::factories(
         FW<Engine::LocalTree::ProcessComponentFactory,
            Tutorial::LocalTreeProcessComponentFactory>,
         FW<iscore::DocumentPluginFactory,
-           Tutorial::DocumentPluginFactory>
+           Tutorial::DocumentPluginFactory>,
+        FW<iscore::PanelDelegateFactory,
+           Tutorial::PanelDelegateFactory>,
+        FW<
+           // This abstract factory was defined inside the tutorial plug-in :
+           Tutorial::PolymorphicElementFactory,
+           Tutorial::ConcretePolymorphicElementFactory
+          >
     >>(ctx, key);
 }
 
@@ -141,11 +190,16 @@ std::pair<const CommandParentFactoryKey, CommandGeneratorMap>
 iscore_addon_tutorial::make_commands()
 {
     using namespace Tutorial;
-    std::pair<const CommandParentFactoryKey, CommandGeneratorMap> cmds{CommandFactoryName(), CommandGeneratorMap{}};
+    std::pair<const CommandParentFactoryKey, CommandGeneratorMap> cmds{
+        CommandFactoryName(),
+        CommandGeneratorMap{}};
 
+    // CMake generates the "addon_commands.hpp" and "addon_commands_file.hpp"
+    // by scanning the source files for \ref ISCORE_COMMAND_DECL or \ref ISCORE_COMMAND_DECL_T.
     using Types = TypeList<
 #include <iscore_addon_tutorial_commands.hpp>
       >;
+
     for_each_type<Types>(iscore::commands::FactoryInserter{cmds.second});
 
     return cmds;

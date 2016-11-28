@@ -2,6 +2,11 @@
 #include <Process/Process.hpp>
 #include <Tutorial/Process/TutorialProcessMetadata.hpp>
 
+#include <Tutorial/SimpleElement/SimpleElement.hpp>
+#include <Tutorial/PolymorphicElement/PolymorphicElement.hpp>
+
+#include <iscore/tools/EntityMap.hpp>
+
 namespace Tutorial
 {
 class ProcessModel final : public Process::ProcessModel
@@ -25,6 +30,9 @@ class ProcessModel final : public Process::ProcessModel
         {
             vis.writeTo(*this);
         }
+
+        EntityMap<SimpleElement> simpleElements;
+        EntityMap<PolymorphicElement> polymorphicElements;
 
         int bananas() const;
         void setBananas(int bananas);

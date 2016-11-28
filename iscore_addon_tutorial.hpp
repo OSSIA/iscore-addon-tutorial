@@ -14,6 +14,22 @@
 #include <utility>
 #include <vector>
 
+/**
+ * @brief The iscore_addon_tutorial class
+ *
+ * This class is the entry-point of the i-score plugin.
+ *
+ * \ref iscore::PluginLoader::loadPlugins contains the plug-in loading code.
+ * \ref iscore::ApplicationInterface::loadPluginData contains plug-in setup code.
+ *
+ * The loaded plug-in data can always be accessed through \ref iscore::AppContext
+ * but it is better practice to have the objects depend on their requirements
+ * through constructor injection, and provide these requirements in the object
+ * factories which have access to the same context without requiring a singleton function.
+ *
+ * When making a plug-in, not all the interfaces used here may be necessary; this
+ * one aims to give an overview of all the possibilities.
+ */
 class iscore_addon_tutorial final :
         public QObject,
         public iscore::Plugin_QtInterface,

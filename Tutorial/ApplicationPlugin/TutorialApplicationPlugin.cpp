@@ -10,12 +10,15 @@ ApplicationPlugin::ApplicationPlugin(
 
 }
 
-void ApplicationPlugin::on_newDocument(iscore::Document& doc)
+void ApplicationPlugin::on_newDocument(
+        iscore::Document& doc)
 {
 
 }
 
-void ApplicationPlugin::on_documentChanged(iscore::Document* olddoc, iscore::Document* newdoc)
+void ApplicationPlugin::on_documentChanged(
+        iscore::Document* olddoc,
+        iscore::Document* newdoc)
 {
 
 }
