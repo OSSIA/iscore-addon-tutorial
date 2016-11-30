@@ -13,7 +13,6 @@ DocumentPlugin::DocumentPlugin(
 
 }
 
-
 template<>
 void Visitor<Reader<DataStream>>::readFrom_impl(
         const Tutorial::DocumentPlugin& dev)

@@ -25,7 +25,10 @@ namespace Tutorial
  */
 class AddBanana : public iscore::SerializableCommand
 {
+        // The following macro is used to allow CMake to parseall the commands in a plug-in,
+        // and to provide some metadata (e.g. the name that will be shown to the user)
         ISCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddBanana, "Add a banana")
+
     public:
         AddBanana(const Tutorial::ProcessModel& model);
 

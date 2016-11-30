@@ -15,6 +15,10 @@ namespace Tutorial
  * auto& ctx = iscore::AppContext();
  * auto& my_plugin = ctx.components.applicationPlugin<Tutorial::ApplicationPlugin>();
  * \endcode
+ *
+ * Most of the time this is used to have ownership on some global data,
+ * without enforcing the existence of a singleton at the type level.
+ *
  */
 class ApplicationPlugin final :
         public iscore::GUIApplicationContextPlugin

@@ -4,7 +4,7 @@
 namespace Tutorial
 {
 /**
- * @brief CommandFactoryName
+ * @brief Tutorial::CommandFactoryName
  * @return A unique key to identify the commands of this plug-in.
  */
 inline const CommandParentFactoryKey& CommandFactoryName()
