@@ -1,5 +1,6 @@
 #include "SimpleElement.hpp"
-
+#include <iscore/serialization/DataStreamVisitor.hpp>
+#include <iscore/serialization/JSONVisitor.hpp>
 namespace Tutorial
 {
 
