@@ -13,7 +13,7 @@ namespace Tutorial
  *
  * \code
  * auto& ctx = iscore::AppContext();
- * auto& my_plugin = ctx.components.applicationPlugin<Tutorial::ApplicationPlugin>();
+ * auto& my_plugin = ctx.applicationPlugin<Tutorial::ApplicationPlugin>();
  * \endcode
  *
  * Most of the time this is used to have ownership on some global data,

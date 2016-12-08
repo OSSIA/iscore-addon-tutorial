@@ -30,7 +30,7 @@ class PanelDelegate final :
 class PanelDelegateFactory final :
         public iscore::PanelDelegateFactory
 {
-        ISCORE_CONCRETE_FACTORY("11114a3b-f123-42f6-84d0-b3af124d5689")
+        ISCORE_CONCRETE("11114a3b-f123-42f6-84d0-b3af124d5689")
 
         std::unique_ptr<iscore::PanelDelegate> make(
                 const iscore::ApplicationContext& ctx) override;

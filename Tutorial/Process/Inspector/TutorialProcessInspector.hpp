@@ -26,6 +26,6 @@ class InspectorWidget final :
 class InspectorFactory final :
         public Process::InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
 {
-        ISCORE_CONCRETE_FACTORY("41b2ea17-9bec-4688-b5e0-d7fbabfd1038")
+        ISCORE_CONCRETE("41b2ea17-9bec-4688-b5e0-d7fbabfd1038")
 };
 }

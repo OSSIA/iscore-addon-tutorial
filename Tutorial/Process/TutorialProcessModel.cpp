@@ -154,7 +154,7 @@ void Visitor<Writer<DataStream>>::writeTo(
     int32_t poly_count;
     m_stream >> poly_count;
 
-    auto& pl = components.factory<Tutorial::PolymorphicElementFactoryList>();
+    auto& pl = components.interfaces<Tutorial::PolymorphicElementFactoryList>();
     for(; poly_count -- > 0;)
     {
         auto e = deserialize_interface(pl, *this, &proc);
@@ -200,7 +200,7 @@ void Visitor<Writer<JSONObject>>::writeTo(
         proc.simpleElements.add(new Tutorial::SimpleElement{deserializer, &proc});
     }
 
-    auto& pl = components.factory<Tutorial::PolymorphicElementFactoryList>();
+    auto& pl = components.interfaces<Tutorial::PolymorphicElementFactoryList>();
     for(const auto& json_vref : m_obj["PolyElements"].toArray())
     {
         Deserializer<JSONObject> deserializer{json_vref.toObject()};

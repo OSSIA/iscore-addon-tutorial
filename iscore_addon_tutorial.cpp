@@ -93,13 +93,13 @@ void iscore_addon_tutorial::updateSaveFile(
  *
  * \code
  * auto& ctx = iscore::AppContext();
- * auto& my_factories = ctx.components.factory<Tutorial::PolymorphicElementFactoryList>();
+ * auto& my_factories = ctx.interfaces<Tutorial::PolymorphicElementFactoryList>();
  * \endcode
  */
-std::vector<std::unique_ptr<iscore::FactoryListInterface> >
+std::vector<std::unique_ptr<iscore::InterfaceListBase> >
 iscore_addon_tutorial::factoryFamilies()
 {
-    return make_ptr_vector<iscore::FactoryListInterface,
+    return make_ptr_vector<iscore::InterfaceListBase,
             Tutorial::PolymorphicElementFactoryList>();
 }
 
@@ -121,11 +121,11 @@ iscore_addon_tutorial::factoryFamilies()
  * auto& ctx = iscore::AppContext();
  *
  * // Get the list of factories that we are looking for
- * auto& my_factories = ctx.components.factory<Process::ProcessList>();
+ * auto& my_factories = ctx.interfaces<Process::ProcessList>();
  *
  * // Get the key for the actual factory we want;
  * // Instead of doing this, it could already be saved somewhere for instance.
- * auto process_key = Metadata<ConcreteFactoryKey_k, Tutorial::ProcessFactory>::get();
+ * auto process_key = Metadata<ConcreteKey_k, Tutorial::ProcessFactory>::get();
  *
  * // Get the actual factory
  * auto my_process_factory = my_factories.get(process_key);
@@ -134,10 +134,10 @@ iscore_addon_tutorial::factoryFamilies()
  * However, it should rarely be necessary to access a particular factory.
  * The general case should be getting a factory according to an user input.
  */
-std::vector<std::unique_ptr<iscore::FactoryInterfaceBase> >
+std::vector<std::unique_ptr<iscore::InterfaceBase> >
 iscore_addon_tutorial::factories(
         const iscore::ApplicationContext& ctx,
-        const iscore::AbstractFactoryKey& key) const
+        const iscore::InterfaceKey& key) const
 {
     return instantiate_factories<
             iscore::ApplicationContext,

@@ -8,9 +8,9 @@ namespace Tutorial
 {
 class PolymorphicElement;
 class ISCORE_ADDON_TUTORIAL_EXPORT PolymorphicElementFactory :
-        public iscore::AbstractFactory<PolymorphicElementFactory>
+        public iscore::Interface<PolymorphicElementFactory>
 {
-        ISCORE_ABSTRACT_FACTORY("a7c67e8c-9302-4f12-9deb-6d020f74d1d4")
+        ISCORE_INTERFACE("a7c67e8c-9302-4f12-9deb-6d020f74d1d4")
 
         public:
             virtual ~PolymorphicElementFactory();
@@ -32,12 +32,12 @@ class PolymorphicElementFactory_T final :
     public:
         virtual ~PolymorphicElementFactory_T() = default;
 
-        static auto static_concreteFactoryKey()
-        { return Metadata<ConcreteFactoryKey_k, Model_T>::get(); }
+        static auto static_concreteKey()
+        { return Metadata<ConcreteKey_k, Model_T>::get(); }
 
     private:
-        UuidKey<PolymorphicElementFactory> concreteFactoryKey() const override
-        { return Metadata<ConcreteFactoryKey_k, Model_T>::get(); }
+        UuidKey<PolymorphicElementFactory> concreteKey() const noexcept override
+        { return Metadata<ConcreteKey_k, Model_T>::get(); }
 
         Model_T* make(
                 const Id<PolymorphicElement>& id,
@@ -58,7 +58,7 @@ class PolymorphicElementFactory_T final :
 
 
 class ISCORE_ADDON_TUTORIAL_EXPORT PolymorphicElementFactoryList final :
-        public iscore::ConcreteFactoryList<PolymorphicElementFactory>
+        public iscore::InterfaceList<PolymorphicElementFactory>
 {
     public:
         using object_type = PolymorphicElement;

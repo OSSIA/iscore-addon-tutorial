@@ -66,12 +66,12 @@ class iscore_addon_tutorial final :
                 iscore::Version current_version) override;
 
         // Defined in FactoryList_QtInterface
-        std::vector<std::unique_ptr<iscore::FactoryListInterface>> factoryFamilies() override;
+        std::vector<std::unique_ptr<iscore::InterfaceListBase>> factoryFamilies() override;
 
         // Defined in FactoryInterface_QtInterface
-        std::vector<std::unique_ptr<iscore::FactoryInterfaceBase>> factories(
+        std::vector<std::unique_ptr<iscore::InterfaceBase>> factories(
                 const iscore::ApplicationContext& ctx,
-                const iscore::AbstractFactoryKey& key) const override;
+                const iscore::InterfaceKey& key) const override;
 
         // Defined in GUIApplicationContextPlugin_QtInterface
         iscore::GUIApplicationContextPlugin* make_applicationPlugin(
