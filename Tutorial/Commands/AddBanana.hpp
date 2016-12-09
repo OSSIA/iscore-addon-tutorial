@@ -1,5 +1,5 @@
 #pragma once
-#include <iscore/command/SerializableCommand.hpp>
+#include <iscore/command/Command.hpp>
 #include <Tutorial/Process/TutorialProcessModel.hpp>
 #include <Tutorial/Commands/TutorialCommandFactory.hpp>
 
@@ -23,7 +23,7 @@ namespace Tutorial
  *
  * Instead, we save paths to objects in the object tree with \ref Path.
  */
-class AddBanana : public iscore::SerializableCommand
+class AddBanana : public iscore::Command
 {
         // The following macro is used to allow CMake to parseall the commands in a plug-in,
         // and to provide some metadata (e.g. the name that will be shown to the user)

@@ -7,7 +7,7 @@
 
 #include <iscore/application/ApplicationContext.hpp>
 #include <iscore/command/CommandGeneratorMap.hpp>
-#include <iscore/command/SerializableCommand.hpp>
+#include <iscore/command/Command.hpp>
 #include <iscore/plugins/customfactory/FactoryFamily.hpp>
 
 #include <QObject>
