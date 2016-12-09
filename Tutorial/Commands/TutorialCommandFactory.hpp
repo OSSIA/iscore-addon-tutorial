@@ -7,9 +7,9 @@ namespace Tutorial
  * @brief Tutorial::CommandFactoryName
  * @return A unique key to identify the commands of this plug-in.
  */
-inline const CommandParentFactoryKey& CommandFactoryName()
+inline const CommandGroupKey& CommandFactoryName()
 {
-    static const CommandParentFactoryKey key{"Tutorial"};
+    static const CommandGroupKey key{"Tutorial"};
     return key;
 }
 }

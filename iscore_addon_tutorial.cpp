@@ -186,11 +186,11 @@ iscore_addon_tutorial::make_applicationPlugin(
  * This function provides the list of commands available with this
  * plug-in.
  */
-std::pair<const CommandParentFactoryKey, CommandGeneratorMap>
+std::pair<const CommandGroupKey, CommandGeneratorMap>
 iscore_addon_tutorial::make_commands()
 {
     using namespace Tutorial;
-    std::pair<const CommandParentFactoryKey, CommandGeneratorMap> cmds{
+    std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{
         CommandFactoryName(),
         CommandGeneratorMap{}};
 

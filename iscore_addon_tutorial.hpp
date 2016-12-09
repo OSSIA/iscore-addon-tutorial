@@ -78,6 +78,6 @@ class iscore_addon_tutorial final :
                 const iscore::GUIApplicationContext& app) override;
 
         // Defined in CommandFactory_QtInterface
-        std::pair<const CommandParentFactoryKey, CommandGeneratorMap> make_commands() override;
+        std::pair<const CommandGroupKey, CommandGeneratorMap> make_commands() override;
 
 };
