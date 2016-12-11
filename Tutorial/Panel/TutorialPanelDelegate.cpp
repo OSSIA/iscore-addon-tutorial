@@ -6,7 +6,7 @@ namespace Tutorial
 {
 
 PanelDelegate::PanelDelegate(
-        const iscore::ApplicationContext& ctx):
+        const iscore::GUIApplicationContext& ctx):
     iscore::PanelDelegate{ctx}
 {
     m_widget = new QWidget;
@@ -46,7 +46,7 @@ void PanelDelegate::setNewSelection(
 
 
 std::unique_ptr<iscore::PanelDelegate> PanelDelegateFactory::make(
-        const iscore::ApplicationContext& ctx)
+        const iscore::GUIApplicationContext& ctx)
 {
     return std::make_unique<PanelDelegate>(ctx);
 }

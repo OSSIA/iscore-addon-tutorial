@@ -11,7 +11,7 @@ class PanelDelegate final :
 {
     public:
         PanelDelegate(
-                const iscore::ApplicationContext& ctx);
+                const iscore::GUIApplicationContext& ctx);
 
     private:
         QWidget *widget() override;
@@ -33,7 +33,7 @@ class PanelDelegateFactory final :
         ISCORE_CONCRETE("11114a3b-f123-42f6-84d0-b3af124d5689")
 
         std::unique_ptr<iscore::PanelDelegate> make(
-                const iscore::ApplicationContext& ctx) override;
+                const iscore::GUIApplicationContext& ctx) override;
 };
 
 }
