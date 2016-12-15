@@ -141,7 +141,6 @@ iscore_addon_tutorial::factories(
 {
     return instantiate_factories<
             iscore::ApplicationContext,
-    TL<
         FW<
            Process::ProcessModelFactory, // An abstract factory
            Tutorial::ProcessFactory // followed by all the matching concrete factories
@@ -165,7 +164,7 @@ iscore_addon_tutorial::factories(
            Tutorial::PolymorphicElementFactory,
            Tutorial::ConcretePolymorphicElementFactory
           >
-    >>(ctx, key);
+    >(ctx, key);
 }
 
 /**

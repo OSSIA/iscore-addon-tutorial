@@ -1,5 +1,5 @@
 #include "AddBanana.hpp"
-#include <iscore/tools/ModelPathSerialization.hpp>
+#include <iscore/model/path/PathSerialization.hpp>
 
 namespace Tutorial
 {

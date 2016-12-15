@@ -5,7 +5,7 @@
 #include <Tutorial/SimpleElement/SimpleElement.hpp>
 #include <Tutorial/PolymorphicElement/PolymorphicElement.hpp>
 
-#include <iscore/tools/EntityMap.hpp>
+#include <iscore/model/EntityMap.hpp>
 
 namespace Tutorial
 {
