@@ -48,17 +48,17 @@ class iscore_addon_tutorial final :
                 iscore::CommandFactory_QtInterface
                 )
 
+  // Version, and unique identifier for the plug-in.
+  // The uuid can be generated with "uuidgen" on linux or OS X.
+  ISCORE_PLUGIN_METADATA(1, "e8601d50-e29e-4437-8c65-fcee42655a0b")
+
     public:
         iscore_addon_tutorial();
         virtual ~iscore_addon_tutorial();
 
     private:
         // Defined in Plugin_QtInterface
-        UuidKey<iscore::Plugin> key() const override;
-        iscore::Version version() const override;
-
-        QStringList required() const override;
-        QStringList offered() const override;
+        std::vector<iscore::PluginKey> required() const override;
 
         void updateSaveFile(
                 QJsonObject& obj,

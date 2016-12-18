@@ -25,25 +25,6 @@ iscore_addon_tutorial::~iscore_addon_tutorial()
 }
 
 /**
- * @brief iscore_addon_tutorial::version
- * @return The version of the plug-in
- */
-iscore::Version iscore_addon_tutorial::version() const
-{
-    return iscore::Version{0};
-}
-
-/**
- * @brief iscore_addon_tutorial::key
- * @return A unique identifier for the plug-in
- */
-UuidKey<iscore::Plugin> iscore_addon_tutorial::key() const
-{
-    // Can be generated with "uuidgen" on linux or OS X.
-    return_uuid("e8601d50-e29e-4437-8c65-fcee42655a0b");
-}
-
-/**
  * @brief iscore_addon_tutorial::required
  * @return Features that this plug-in requires.
  *
@@ -51,16 +32,8 @@ UuidKey<iscore::Plugin> iscore_addon_tutorial::key() const
  * plug-in providing this feature (through \ref iscore::Plugin_QtInterface::offered)
  * before this one.
  */
-QStringList iscore_addon_tutorial::required() const
-{
-    return {};
-}
-
-/**
- * @brief iscore_addon_tutorial::offered
- * @return Features that this plug-in provides.
- */
-QStringList iscore_addon_tutorial::offered() const
+auto iscore_addon_tutorial::required() const
+  -> std::vector<iscore::PluginKey>
 {
     return {};
 }
