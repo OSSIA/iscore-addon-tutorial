@@ -39,6 +39,7 @@ set(HDRS
 
 )
 set(SRCS
+    Tutorial/SimpleElement/SimpleElement.cpp
     Tutorial/Process/Executor/TutorialProcessExecutor.cpp
     Tutorial/Process/Layer/TutorialProcessPresenter.cpp
     Tutorial/Process/Layer/TutorialProcessView.cpp
@@ -54,7 +55,6 @@ set(SRCS
     Tutorial/Settings/TutorialSettingsPresenter.cpp
     Tutorial/DocumentPlugin/TutorialDocumentPlugin.cpp
     Tutorial/Commands/AddBanana.cpp
-    Tutorial/SimpleElement/SimpleElement.cpp
     Tutorial/SimpleElement/SimpleEntity.cpp
     Tutorial/PolymorphicElement/PolymorphicElement.cpp
     Tutorial/PolymorphicElement/PolymorphicElementFactory.cpp
