@@ -18,8 +18,7 @@ namespace Tutorial
 class ConcretePolymorphicElement final : public PolymorphicElement
 {
         Q_OBJECT
-        ISCORE_SERIALIZE_FRIENDS(ConcretePolymorphicElement, DataStream)
-        ISCORE_SERIALIZE_FRIENDS(ConcretePolymorphicElement, JSONObject)
+        ISCORE_SERIALIZE_FRIENDS
         MODEL_METADATA_IMPL(ConcretePolymorphicElement)
 
     public:
@@ -34,7 +33,7 @@ class ConcretePolymorphicElement final : public PolymorphicElement
 
         template<typename Impl>
         ConcretePolymorphicElement(
-                Deserializer<Impl>& vis,
+                Impl& vis,
                 QObject* parent) :
             PolymorphicElement{vis, parent}
         {

@@ -10,8 +10,7 @@ class PolymorphicElement :
         public iscore::SerializableInterface<PolymorphicElementFactory>
 {
         Q_OBJECT
-        ISCORE_SERIALIZE_FRIENDS(PolymorphicElement, DataStream)
-        ISCORE_SERIALIZE_FRIENDS(PolymorphicElement, JSONObject)
+        ISCORE_SERIALIZE_FRIENDS
 
     public:
         PolymorphicElement(
@@ -25,7 +24,7 @@ class PolymorphicElement :
 
         template<typename Impl>
         PolymorphicElement(
-                Deserializer<Impl>& vis,
+                Impl& vis,
                 QObject* parent) :
             iscore::Entity<PolymorphicElement>{vis, parent}
         {

@@ -13,30 +13,29 @@ DocumentPlugin::DocumentPlugin(
 
 }
 
-template<>
-void Visitor<Reader<DataStream>>::readFrom_impl(
+template <>
+void DataStreamReader::read(
         const Tutorial::DocumentPlugin& dev)
 {
     insertDelimiter();
 }
 
-template<>
-void Visitor<Writer<DataStream>>::writeTo(
+template <>
+void DataStreamWriter::writeTo(
         Tutorial::DocumentPlugin& plug)
 {
     checkDelimiter();
 }
 
-template<>
-void Visitor<Reader<JSONObject>>::readFrom_impl(
+template <>
+void JSONObjectReader::read(
         const Tutorial::DocumentPlugin& plug)
 {
 
 }
 
-
-template<>
-void Visitor<Writer<JSONObject>>::writeTo(
+template <>
+void JSONObjectWriter::writeTo(
         Tutorial::DocumentPlugin& plug)
 {
 }

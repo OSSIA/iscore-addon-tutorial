@@ -104,8 +104,8 @@ void ProcessModel::setDurationAndShrink(const TimeValue& newDuration)
  *
  * - JSON : slower, but human-readable, and keys can be missing.
  */
-template<>
-void Visitor<Reader<DataStream>>::readFrom_impl(
+template <>
+void DataStreamReader::read(
         const Tutorial::ProcessModel& proc)
 {
     /** Save the SimpleElements **/
@@ -130,8 +130,8 @@ void Visitor<Reader<DataStream>>::readFrom_impl(
     insertDelimiter();
 }
 
-template<>
-void Visitor<Writer<DataStream>>::writeTo(
+template <>
+void DataStreamWriter::writeTo(
         Tutorial::ProcessModel& proc)
 {
     int32_t simple_count;
@@ -181,29 +181,29 @@ void Visitor<Writer<DataStream>>::writeTo(
  * We now do the same thing, but in JSON.
  * Some things are shorter to write, others are sometimes longer.
  */
-template<>
-void Visitor<Reader<JSONObject>>::readFrom_impl(
+template <>
+void JSONObjectReader::read(
         const Tutorial::ProcessModel& proc)
 {
-    m_obj["SimpleElements"] = toJsonArray(proc.simpleElements);
-    m_obj["PolyElements"] = toJsonArray(proc.polymorphicElements);
-    m_obj["Bananas"] = proc.m_bananas;
+    obj["SimpleElements"] = toJsonArray(proc.simpleElements);
+    obj["PolyElements"] = toJsonArray(proc.polymorphicElements);
+    obj["Bananas"] = proc.m_bananas;
 }
 
-template<>
-void Visitor<Writer<JSONObject>>::writeTo(
+template <>
+void JSONObjectWriter::writeTo(
         Tutorial::ProcessModel& proc)
 {
-    for(const auto& json_vref : m_obj["SimpleElements"].toArray())
+    for(const auto& json_vref : obj["SimpleElements"].toArray())
     {
-        Deserializer<JSONObject> deserializer {json_vref.toObject()};
+        JSONObject::Deserializer deserializer {json_vref.toObject()};
         proc.simpleElements.add(new Tutorial::SimpleElement{deserializer, &proc});
     }
 
     auto& pl = components.interfaces<Tutorial::PolymorphicElementFactoryList>();
-    for(const auto& json_vref : m_obj["PolyElements"].toArray())
+    for(const auto& json_vref : obj["PolyElements"].toArray())
     {
-        Deserializer<JSONObject> deserializer{json_vref.toObject()};
+        JSONObject::Deserializer deserializer{json_vref.toObject()};
         auto e = deserialize_interface(pl, deserializer, &proc);
         if(e)
         {
@@ -217,5 +217,5 @@ void Visitor<Writer<JSONObject>>::writeTo(
         }
     }
 
-    proc.m_bananas = m_obj["Bananas"].toInt();
+    proc.m_bananas = obj["Bananas"].toInt();
 }

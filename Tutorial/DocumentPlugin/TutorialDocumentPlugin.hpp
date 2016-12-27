@@ -41,8 +41,7 @@ class DocumentPlugin final :
         public iscore::SerializableDocumentPlugin
 {
         Q_OBJECT
-        ISCORE_SERIALIZE_FRIENDS(DocumentPlugin, DataStream)
-        ISCORE_SERIALIZE_FRIENDS(DocumentPlugin, JSONObject)
+        ISCORE_SERIALIZE_FRIENDS
 
         SERIALIZABLE_MODEL_METADATA_IMPL(DocumentPlugin)
 
@@ -55,7 +54,7 @@ class DocumentPlugin final :
         template<typename Impl>
         DocumentPlugin(
                 const iscore::DocumentContext& ctx,
-                Deserializer<Impl>& vis,
+                Impl& vis,
                 QObject* parent):
             iscore::SerializableDocumentPlugin{ctx, vis, parent}
         {

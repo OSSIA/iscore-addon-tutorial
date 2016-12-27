@@ -11,7 +11,7 @@ class SimpleElement final : public IdentifiedObject<SimpleElement>
         SimpleElement(const Id<SimpleElement>& id, QObject* parent);
 
         template<typename Impl>
-        SimpleElement(Deserializer<Impl>& vis, QObject* parent) :
+        SimpleElement(Impl& vis, QObject* parent) :
             IdentifiedObject{vis, parent}
         {
             vis.writeTo(*this);

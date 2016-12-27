@@ -16,28 +16,25 @@ SimpleEntity::~SimpleEntity()
 
 }
 
-template<>
-void Visitor<Reader<DataStream>>::readFrom(const Tutorial::SimpleEntity& e)
+template <>
+void DataStreamReader::read(const Tutorial::SimpleEntity& e)
 {
-    readFrom(static_cast<const iscore::Entity<Tutorial::SimpleEntity>&>(e));
-
     insertDelimiter();
 }
 
-template<>
-void Visitor<Writer<DataStream>>::writeTo(Tutorial::SimpleEntity& e)
+template <>
+void DataStreamWriter::writeTo(Tutorial::SimpleEntity& e)
 {
     checkDelimiter();
 }
 
-template<>
-void Visitor<Reader<JSONObject>>::readFrom(const Tutorial::SimpleEntity& e)
+template <>
+void JSONObjectReader::read(const Tutorial::SimpleEntity& e)
 {
-    readFrom(static_cast<const iscore::Entity<Tutorial::SimpleEntity>&>(e));
 }
 
-template<>
-void Visitor<Writer<JSONObject>>::writeTo(Tutorial::SimpleEntity& e)
+template <>
+void JSONObjectWriter::writeTo(Tutorial::SimpleEntity& e)
 {
 
 }

@@ -29,28 +29,28 @@ void ConcretePolymorphicElement::someVirtualMethod()
 // Here we do not need to save the parent class.
 // This is because the serialization mechanism will
 // be called from the point of view of the PolymorphicElement class.
-template<>
-void Visitor<Reader<DataStream>>::readFrom_impl(
+template <>
+void DataStreamReader::read(
         const Tutorial::ConcretePolymorphicElement& p)
 {
     insertDelimiter();
 }
 
-template<>
-void Visitor<Writer<DataStream>>::writeTo(
+template <>
+void DataStreamWriter::writeTo(
         Tutorial::ConcretePolymorphicElement& p)
 {
     checkDelimiter();
 }
 
-template<>
-void Visitor<Reader<JSONObject>>::readFrom_impl(
+template <>
+void JSONObjectReader::read(
         const Tutorial::ConcretePolymorphicElement& p)
 {
 }
 
-template<>
-void Visitor<Writer<JSONObject>>::writeTo(
+template <>
+void JSONObjectWriter::writeTo(
         Tutorial::ConcretePolymorphicElement& p)
 {
 }

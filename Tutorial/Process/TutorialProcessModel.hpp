@@ -11,8 +11,7 @@ namespace Tutorial
 {
 class ProcessModel final : public Process::ProcessModel
 {
-        ISCORE_SERIALIZE_FRIENDS(ProcessModel, DataStream)
-        ISCORE_SERIALIZE_FRIENDS(ProcessModel, JSONObject)
+        ISCORE_SERIALIZE_FRIENDS
         MODEL_METADATA_IMPL(Tutorial::ProcessModel)
 
         Q_PROPERTY(int bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
@@ -25,7 +24,7 @@ class ProcessModel final : public Process::ProcessModel
                      QObject* parent);
 
         template<typename Impl>
-        ProcessModel(Deserializer<Impl>& vis, QObject* parent) :
+        ProcessModel(Impl& vis, QObject* parent) :
             Process::ProcessModel{vis, parent}
         {
             vis.writeTo(*this);
