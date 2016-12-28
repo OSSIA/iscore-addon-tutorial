@@ -131,7 +131,7 @@ void DataStreamReader::read(
 }
 
 template <>
-void DataStreamWriter::writeTo(
+void DataStreamWriter::write(
         Tutorial::ProcessModel& proc)
 {
     int32_t simple_count;
@@ -191,7 +191,7 @@ void JSONObjectReader::read(
 }
 
 template <>
-void JSONObjectWriter::writeTo(
+void JSONObjectWriter::write(
         Tutorial::ProcessModel& proc)
 {
     for(const auto& json_vref : obj["SimpleElements"].toArray())

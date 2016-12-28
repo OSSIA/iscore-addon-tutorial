@@ -24,7 +24,7 @@ void DataStreamReader::read(const Tutorial::SimpleElement& e)
 }
 
 template <>
-void DataStreamWriter::writeTo(Tutorial::SimpleElement& e)
+void DataStreamWriter::write(Tutorial::SimpleElement& e)
 {
     checkDelimiter();
 }
@@ -35,7 +35,7 @@ void JSONObjectReader::read(const Tutorial::SimpleElement& e)
 }
 
 template <>
-void JSONObjectWriter::writeTo(Tutorial::SimpleElement& e)
+void JSONObjectWriter::write(Tutorial::SimpleElement& e)
 {
 
 }

@@ -30,8 +30,8 @@ class ProcessModel final : public Process::ProcessModel
             vis.writeTo(*this);
         }
 
-        EntityMap<SimpleElement> simpleElements;
-        EntityMap<PolymorphicElement> polymorphicElements;
+        iscore::EntityMap<SimpleElement> simpleElements;
+        iscore::EntityMap<PolymorphicElement> polymorphicElements;
 
         int bananas() const;
         void setBananas(int bananas);

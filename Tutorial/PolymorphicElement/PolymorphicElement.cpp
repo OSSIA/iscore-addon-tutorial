@@ -34,7 +34,7 @@ void DataStreamReader::read(
 }
 
 template <>
-void DataStreamWriter::writeTo(
+void DataStreamWriter::write(
         Tutorial::PolymorphicElement& p)
 {
 }
@@ -46,7 +46,7 @@ void JSONObjectReader::read(
 }
 
 template <>
-void JSONObjectWriter::writeTo(
+void JSONObjectWriter::write(
         Tutorial::PolymorphicElement& p)
 {
 }
