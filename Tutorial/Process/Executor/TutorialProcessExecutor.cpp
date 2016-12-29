@@ -10,8 +10,8 @@ namespace Tutorial
 {
 
 ProcessExecutor::ProcessExecutor(
-        const Device::DeviceList& devices):
-    m_devices{devices}
+    const Device::DeviceList& devices):
+  m_devices{devices}
 {
 }
 
@@ -33,41 +33,43 @@ void ProcessExecutor::resume()
 }
 
 ossia::state_element ProcessExecutor::offset(
-        ossia::time_value off)
+    ossia::time_value off)
 {
-    return {};
+  return {};
 }
 
 ossia::state_element ProcessExecutor::state()
 {
-    State::Address address{"my_device", {"a", "banana"}};
-    State::Value value = State::Value::fromValue(std::abs(qrand()) % 100);
-    State::Message m;
-    m.address = address;
-    m.value = value;
+  State::Address address{"my_device", {"a", "banana"}};
+  State::Value value = State::Value::fromValue(std::abs(qrand()) % 100);
+  State::Message m;
+  m.address = address;
+  m.value = value;
 
-    if(auto res = Engine::iscore_to_ossia::message(m, m_devices))
-    {
-        return *res;
-    }
-    else
-    {
-        return {};
-    }
+  if(auto res = Engine::iscore_to_ossia::message(m, m_devices))
+  {
+    if(unmuted())
+      return *res;
+    return {};
+  }
+  else
+  {
+    return {};
+  }
 }
 
 
 
 ProcessExecutorComponent::ProcessExecutorComponent(
-        Engine::Execution::ConstraintElement& parentConstraint,
-        Tutorial::ProcessModel& element,
-        const Engine::Execution::Context& ctx,
-        const Id<iscore::Component>& id,
-        QObject* parent):
-    ProcessComponent_T{
-          parentConstraint, element, ctx, id, "TutorialExecutorComponent", parent}
+    Engine::Execution::ConstraintElement& parentConstraint,
+    Tutorial::ProcessModel& element,
+    const Engine::Execution::Context& ctx,
+    const Id<iscore::Component>& id,
+    QObject* parent):
+  ProcessComponent_T{
+    parentConstraint, element, ctx, id, "TutorialExecutorComponent", parent}
 {
-    m_ossia_process = new ProcessExecutor{ctx.devices.list()};
+  m_ossia_process = new ProcessExecutor{ctx.devices.list()};
 }
 
 }
