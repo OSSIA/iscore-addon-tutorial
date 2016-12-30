@@ -36,7 +36,7 @@ class ProcessExecutorComponent final :
         COMPONENT_METADATA("4797971b-54cd-43e5-8514-e2e941303d1a")
     public:
         ProcessExecutorComponent(
-                Engine::Execution::ConstraintElement& parentConstraint,
+                Engine::Execution::ConstraintComponent& parentConstraint,
                 ProcessModel& element,
                 const Engine::Execution::Context& ctx,
                 const Id<iscore::Component>& id,

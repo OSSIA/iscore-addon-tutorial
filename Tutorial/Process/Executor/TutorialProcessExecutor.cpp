@@ -61,7 +61,7 @@ ossia::state_element ProcessExecutor::state()
 
 
 ProcessExecutorComponent::ProcessExecutorComponent(
-    Engine::Execution::ConstraintElement& parentConstraint,
+    Engine::Execution::ConstraintComponent& parentConstraint,
     Tutorial::ProcessModel& element,
     const Engine::Execution::Context& ctx,
     const Id<iscore::Component>& id,
