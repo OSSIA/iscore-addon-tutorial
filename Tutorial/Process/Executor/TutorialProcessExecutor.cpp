@@ -69,7 +69,7 @@ ProcessExecutorComponent::ProcessExecutorComponent(
   ProcessComponent_T{
     parentConstraint, element, ctx, id, "TutorialExecutorComponent", parent}
 {
-  m_ossia_process = new ProcessExecutor{ctx.devices.list()};
+  m_ossia_process = std::make_shared<ProcessExecutor>(ctx.devices.list());
 }
 
 }
