@@ -6,6 +6,7 @@
 
 namespace Tutorial
 {
+//! Layers are the base component for displaying. Think the "ViewModel" in MVVM.
 using Layer = Process::LayerModel_T<ProcessModel>;
 }
 

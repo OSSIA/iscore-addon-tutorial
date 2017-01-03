@@ -3,7 +3,7 @@
 #include <Tutorial/Process/TutorialProcessMetadata.hpp>
 
 #include <Tutorial/SimpleElement/SimpleElement.hpp>
-#include <Tutorial/PolymorphicElement/PolymorphicElement.hpp>
+#include <Tutorial/PolymorphicEntity/PolymorphicEntity.hpp>
 
 #include <iscore/model/EntityMap.hpp>
 
@@ -31,7 +31,7 @@ class ProcessModel final : public Process::ProcessModel
         }
 
         iscore::EntityMap<SimpleElement> simpleElements;
-        iscore::EntityMap<PolymorphicElement> polymorphicElements;
+        iscore::EntityMap<PolymorphicEntity> polymorphicEntities;
 
         int bananas() const;
         void setBananas(int bananas);

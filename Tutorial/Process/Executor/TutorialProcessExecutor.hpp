@@ -5,10 +5,16 @@ namespace Device
 {
 class DeviceList;
 }
-
+/**
+ * These classes provide execution components to a process.
+ * I.E. what happens once the score plays.
+ *
+ * Please refer to the Engine::Execution documentation.
+ */
 namespace Tutorial
 {
 class ProcessModel;
+//! The class that does the actual execution, in the execution thread
 class ProcessExecutor final :
         public ossia::time_process
 {
@@ -27,7 +33,7 @@ class ProcessExecutor final :
         const Device::DeviceList& m_devices;
 };
 
-
+//! Component and bridge between the GUI / Edition thread and the execution thread.
 class ProcessExecutorComponent final :
         public Engine::Execution::ProcessComponent_T<
             Tutorial::ProcessModel,

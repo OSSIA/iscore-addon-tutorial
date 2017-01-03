@@ -1,5 +1,5 @@
 #include "TutorialProcessModel.hpp"
-#include <Tutorial/PolymorphicElement/PolymorphicElementFactory.hpp>
+#include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
 
 namespace Tutorial
 {
@@ -116,8 +116,8 @@ void DataStreamReader::read(
     }
 
     /** Save the PolymorphicElements **/
-    m_stream << (int32_t) proc.polymorphicElements.size();
-    for(const auto& e : proc.polymorphicElements)
+    m_stream << (int32_t) proc.polymorphicEntities.size();
+    for(const auto& e : proc.polymorphicEntities)
     {
         readFrom(e);
     }
@@ -160,7 +160,7 @@ void DataStreamWriter::write(
         auto e = deserialize_interface(pl, *this, &proc);
         if(e)
         {
-            proc.polymorphicElements.add(e);
+            proc.polymorphicEntities.add(e);
         }
         else
         {
@@ -186,7 +186,7 @@ void JSONObjectReader::read(
         const Tutorial::ProcessModel& proc)
 {
     obj["SimpleElements"] = toJsonArray(proc.simpleElements);
-    obj["PolyElements"] = toJsonArray(proc.polymorphicElements);
+    obj["PolyElements"] = toJsonArray(proc.polymorphicEntities);
     obj["Bananas"] = proc.m_bananas;
 }
 
@@ -207,7 +207,7 @@ void JSONObjectWriter::write(
         auto e = deserialize_interface(pl, deserializer, &proc);
         if(e)
         {
-            proc.polymorphicElements.add(e);
+            proc.polymorphicEntities.add(e);
         }
         else
         {

@@ -10,6 +10,8 @@ class EffectComponent;
 class EffectProcessComponent;
 class EffectFactoryList;
 
+//! This component displays informations about an object in the Device Explorer,
+//! in the left panel.
 class LocalTreeProcessComponent :
         public Engine::LocalTree::ProcessComponent_T<ProcessModel>
 {

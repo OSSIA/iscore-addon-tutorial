@@ -28,12 +28,13 @@ set(HDRS
     Tutorial/Settings/TutorialSettingsFactory.hpp
     Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp
     Tutorial/Commands/AddBanana.hpp
+    Tutorial/Commands/AddEntity.hpp
     Tutorial/Commands/TutorialCommandFactory.hpp
     Tutorial/SimpleElement/SimpleElement.hpp
     Tutorial/SimpleElement/SimpleEntity.hpp
-    Tutorial/PolymorphicElement/PolymorphicElement.hpp
-    Tutorial/PolymorphicElement/PolymorphicElementFactory.hpp
-    Tutorial/PolymorphicElement/Implementation/ConcretePolymorphicElement.hpp
+    Tutorial/PolymorphicEntity/PolymorphicEntity.hpp
+    Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp
+    Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.hpp
 
     iscore_addon_tutorial.hpp
 
@@ -55,10 +56,11 @@ set(SRCS
     Tutorial/Settings/TutorialSettingsPresenter.cpp
     Tutorial/DocumentPlugin/TutorialDocumentPlugin.cpp
     Tutorial/Commands/AddBanana.cpp
+    Tutorial/Commands/AddEntity.cpp
     Tutorial/SimpleElement/SimpleEntity.cpp
-    Tutorial/PolymorphicElement/PolymorphicElement.cpp
-    Tutorial/PolymorphicElement/PolymorphicElementFactory.cpp
-    Tutorial/PolymorphicElement/Implementation/ConcretePolymorphicElement.cpp
+    Tutorial/PolymorphicEntity/PolymorphicEntity.cpp
+    Tutorial/PolymorphicEntity/PolymorphicEntityFactory.cpp
+    Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.cpp
 
     iscore_addon_tutorial.cpp
 )

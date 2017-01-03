@@ -5,7 +5,7 @@ namespace Tutorial
 
 ApplicationPlugin::ApplicationPlugin(
         const iscore::GUIApplicationContext& app):
-    GUIApplicationContextPlugin {app}
+    GUIApplicationPlugin {app}
 {
 
 }

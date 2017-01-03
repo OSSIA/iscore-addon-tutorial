@@ -1,5 +1,5 @@
 #pragma once
-#include <iscore/plugins/application/GUIApplicationContextPlugin.hpp>
+#include <iscore/plugins/application/GUIApplicationPlugin.hpp>
 
 namespace Tutorial
 {
@@ -19,9 +19,10 @@ namespace Tutorial
  * Most of the time this is used to have ownership on some global data,
  * without enforcing the existence of a singleton at the type level.
  *
+ * It is also used to add document plug-ins to a newly created or loaded document.
  */
 class ApplicationPlugin final :
-        public iscore::GUIApplicationContextPlugin
+        public iscore::GUIApplicationPlugin
 {
     public:
         ApplicationPlugin(

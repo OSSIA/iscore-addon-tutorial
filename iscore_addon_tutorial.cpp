@@ -8,8 +8,8 @@
 #include <Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp>
 #include <Tutorial/ApplicationPlugin/TutorialApplicationPlugin.hpp>
 #include <Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp>
-#include <Tutorial/PolymorphicElement/PolymorphicElementFactory.hpp>
-#include <Tutorial/PolymorphicElement/Implementation/ConcretePolymorphicElement.hpp>
+#include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
+#include <Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.hpp>
 #include <Tutorial/Panel/TutorialPanelDelegate.hpp>
 
 #include <iscore/plugins/customfactory/FactorySetup.hpp>
@@ -146,7 +146,7 @@ iscore_addon_tutorial::factories(
  * This function allows to instantiate an application-wide object.
  * These objects are instantiated before any factory.
  */
-iscore::GUIApplicationContextPlugin*
+iscore::GUIApplicationPlugin*
 iscore_addon_tutorial::make_applicationPlugin(
         const iscore::GUIApplicationContext& app)
 {

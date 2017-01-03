@@ -1,4 +1,4 @@
-#include "PolymorphicElementFactory.hpp"
+#include "PolymorphicEntityFactory.hpp"
 
 namespace Tutorial
 {
@@ -8,7 +8,7 @@ PolymorphicElementFactory::~PolymorphicElementFactory()
 
 }
 
-PolymorphicElement* PolymorphicElementFactoryList::loadMissing(
+PolymorphicEntity* PolymorphicElementFactoryList::loadMissing(
         const VisitorVariant& vis,
         QObject* parent) const
 {

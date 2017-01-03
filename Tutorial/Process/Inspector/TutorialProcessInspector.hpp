@@ -7,8 +7,13 @@
 namespace Tutorial
 {
 class ProcessModel;
+class PolymorphicEntity;
+
+//! This is the widget that will be shown when clicking on a constraint
+//! that has a Tutorial::ProcessModel process.
 class InspectorWidget final :
-        public Process::InspectorWidgetDelegate_T<Tutorial::ProcessModel>
+        public Process::InspectorWidgetDelegate_T<Tutorial::ProcessModel>,
+        public Nano::Observer // For automatic signal - slot destruction
 {
     public:
         explicit InspectorWidget(
@@ -17,6 +22,8 @@ class InspectorWidget final :
                 QWidget* parent);
 
     private:
+        void on_entityAdded(const PolymorphicEntity&);
+        void on_entityRemoved(const PolymorphicEntity&);
         void addBanana();
 
         CommandDispatcher<> m_dispatcher;
