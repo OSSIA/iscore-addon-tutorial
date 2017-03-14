@@ -65,6 +65,8 @@ set(SRCS
     iscore_addon_tutorial.cpp
 )
 
+qt5_add_resources(QRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources/Tutorial.qrc")
+
 # Creation of the library
 add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
 

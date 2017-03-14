@@ -131,7 +131,9 @@ iscore_addon_tutorial::factories(
         FW<iscore::DocumentPluginFactory,
            Tutorial::DocumentPluginFactory>,
         FW<iscore::PanelDelegateFactory,
-           Tutorial::PanelDelegateFactory>,
+           Tutorial::PanelDelegateFactory,
+            Tutorial::QMLPanelDelegateFactory
+            >,
         FW<
            // This abstract factory was defined inside the tutorial plug-in :
            Tutorial::PolymorphicElementFactory,
