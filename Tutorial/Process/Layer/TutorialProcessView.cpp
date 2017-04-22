@@ -12,6 +12,7 @@ TutorialView::TutorialView(
         QGraphicsItem* parent):
     LayerView{parent}
 {
+  this->setFlag(QGraphicsItem::ItemClipsToShape, true);
   this->setFlag(QGraphicsItem::ItemClipsChildrenToShape, true);
   auto widget = new QQuickWidget(QUrl("qrc:///TutorialProcess.qml"));
   widget->setClearColor(QColor("#19456B"));
