@@ -7,7 +7,7 @@
 namespace Tutorial
 {
 TutorialPresenter::TutorialPresenter(
-        const Layer& layer,
+        const ProcessModel& layer,
         TutorialView* view,
         const Process::ProcessPresenterContext& ctx,
         QObject* parent):
@@ -15,7 +15,7 @@ TutorialPresenter::TutorialPresenter(
     m_layer{layer},
     m_view{view}
 {
-    const Tutorial::ProcessModel& p = layer.processModel();
+    const Tutorial::ProcessModel& p = layer;
 
     // From model to view :
     con(p, &ProcessModel::bananasChanged,
@@ -57,14 +57,14 @@ void TutorialPresenter::parentGeometryChanged()
 {
 }
 
-const Process::LayerModel& TutorialPresenter::layerModel() const
+const Process::ProcessModel& TutorialPresenter::model() const
 {
     return m_layer;
 }
 
 const Id<Process::ProcessModel>& TutorialPresenter::modelId() const
 {
-    return m_layer.processModel().id();
+    return m_layer.id();
 }
 
 void TutorialPresenter::on_doubleClicked()
@@ -91,7 +91,7 @@ void TutorialPresenter::on_doubleClicked()
       CommandDispatcher<> disp{m_context.context.commandStack};
 
       disp.submitCommand<AddEntity>(
-              m_layer.processModel(), // The object on which it is applied
+              m_layer, // The object on which it is applied
               factory_key // The factory that we used.
       );
 

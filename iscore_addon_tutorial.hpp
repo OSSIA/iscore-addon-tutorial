@@ -74,7 +74,7 @@ class iscore_addon_tutorial final :
                 const iscore::InterfaceKey& key) const override;
 
         // Defined in ApplicationPlugin_QtInterface
-        iscore::GUIApplicationPlugin* make_applicationPlugin(
+        iscore::GUIApplicationPlugin* make_guiApplicationPlugin(
                 const iscore::GUIApplicationContext& app) override;
 
         // Defined in CommandFactory_QtInterface

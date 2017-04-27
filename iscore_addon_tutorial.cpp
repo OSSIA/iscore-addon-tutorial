@@ -118,10 +118,6 @@ iscore_addon_tutorial::factories(
            Process::ProcessModelFactory, // An abstract factory
            Tutorial::ProcessFactory // followed by all the matching concrete factories
           >,
-        FW<
-           Process::LayerFactory, // Another abstract factory
-           Tutorial::LayerFactory // etc...
-          >,
         FW<Process::InspectorWidgetDelegateFactory,
            Tutorial::InspectorFactory>,
         FW<Engine::Execution::ProcessComponentFactory,
@@ -149,7 +145,7 @@ iscore_addon_tutorial::factories(
  * These objects are instantiated before any factory.
  */
 iscore::GUIApplicationPlugin*
-iscore_addon_tutorial::make_applicationPlugin(
+iscore_addon_tutorial::make_guiApplicationPlugin(
         const iscore::GUIApplicationContext& app)
 {
     return new Tutorial::ApplicationPlugin{app};

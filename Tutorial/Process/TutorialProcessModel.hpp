@@ -12,7 +12,7 @@ namespace Tutorial
 class ProcessModel final : public Process::ProcessModel
 {
         ISCORE_SERIALIZE_FRIENDS
-        MODEL_METADATA_IMPL(Tutorial::ProcessModel)
+        PROCESS_METADATA_IMPL(Tutorial::ProcessModel)
 
         Q_PROPERTY(int bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
 

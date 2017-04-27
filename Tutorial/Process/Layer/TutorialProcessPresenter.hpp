@@ -9,6 +9,7 @@
 
 namespace Tutorial
 {
+class ProcessModel;
 class TutorialView;
 //! The Presenter should update the view with the data of the model
 //! and create commands to react to user actions in the view.
@@ -17,7 +18,7 @@ class TutorialPresenter final :
 {
     public:
         explicit TutorialPresenter(
-                const Layer& model,
+                const ProcessModel& model,
                 TutorialView* view,
                 const Process::ProcessPresenterContext& ctx,
                 QObject* parent);
@@ -34,13 +35,13 @@ class TutorialPresenter final :
 
         void parentGeometryChanged() override;
 
-        const Process::LayerModel& layerModel() const override;
+        const Process::ProcessModel& model() const override;
         const Id<Process::ProcessModel>& modelId() const override;
 
     private:
         void on_doubleClicked();
 
-        const Layer& m_layer;
+        const ProcessModel& m_layer;
         TutorialView* m_view{};
 };
 }

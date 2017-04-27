@@ -1,5 +1,5 @@
 #pragma once
-#include <Tutorial/Process/Layer/TutorialProcessLayer.hpp>
+#include <Process/GenericProcessFactory.hpp>
 #include <Tutorial/Process/Layer/TutorialProcessPresenter.hpp>
 #include <Tutorial/Process/Layer/TutorialProcessView.hpp>
 
@@ -9,8 +9,7 @@ namespace Tutorial
 {
     using LayerFactory = Process::GenericLayerFactory<
     Tutorial::ProcessModel,
-    Tutorial::Layer,
     Tutorial::TutorialPresenter,
     Tutorial::TutorialView,
-    Process::GraphicsViewLayerModelPanelProxy>;
+    Process::GraphicsViewLayerPanelProxy>;
 }
