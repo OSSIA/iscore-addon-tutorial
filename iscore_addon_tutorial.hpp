@@ -35,7 +35,7 @@ class iscore_addon_tutorial final :
         public iscore::Plugin_QtInterface,
         public iscore::FactoryInterface_QtInterface,
         public iscore::FactoryList_QtInterface,
-        public iscore::GUIApplicationPlugin_QtInterface,
+        public iscore::ApplicationPlugin_QtInterface,
         public iscore::CommandFactory_QtInterface
 {
         Q_OBJECT
@@ -44,7 +44,7 @@ class iscore_addon_tutorial final :
                 iscore::Plugin_QtInterface
                 iscore::FactoryInterface_QtInterface
                 iscore::FactoryList_QtInterface
-                iscore::GUIApplicationPlugin_QtInterface
+                iscore::ApplicationPlugin_QtInterface
                 iscore::CommandFactory_QtInterface
                 )
 
@@ -73,7 +73,7 @@ class iscore_addon_tutorial final :
                 const iscore::ApplicationContext& ctx,
                 const iscore::InterfaceKey& key) const override;
 
-        // Defined in GUIApplicationPlugin_QtInterface
+        // Defined in ApplicationPlugin_QtInterface
         iscore::GUIApplicationPlugin* make_applicationPlugin(
                 const iscore::GUIApplicationContext& app) override;
 
