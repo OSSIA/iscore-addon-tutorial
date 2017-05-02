@@ -23,10 +23,6 @@ void ApplicationPlugin::on_documentChanged(
 
 }
 
-void ApplicationPlugin::initialize()
-{
-}
-
 iscore::GUIElements ApplicationPlugin::makeGUIElements()
 {
     return {};

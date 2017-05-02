@@ -35,8 +35,6 @@ class ApplicationPlugin final :
                 iscore::Document* olddoc,
                 iscore::Document* newdoc) override;
 
-        void initialize() override;
-
         iscore::GUIElements makeGUIElements() override;
 
         bool handleStartup() override;
