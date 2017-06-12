@@ -33,13 +33,15 @@ void ProcessExecutor::resume()
 }
 
 ossia::state_element ProcessExecutor::offset(
-    ossia::time_value off)
+    ossia::time_value off, double pos)
 {
   return {};
 }
 
-ossia::state_element ProcessExecutor::state()
+ossia::state_element ProcessExecutor::state(ossia::time_value date, double pos)
 {
+  // Date : the date in milliseconds from the beginning of the parent.
+  // Pos : relative position, between 0 and 1, of the execution playhead for this process.
   State::Address address{"my_device", {"a", "banana"}};
   State::Value value = State::Value::fromValue(std::abs(qrand()) % 100);
   State::Message m;

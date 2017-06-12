@@ -10,6 +10,7 @@
 #include <QApplication>
 #include <QBrush>
 #include <QColor>
+#include <QQuickView>
 namespace Tutorial
 {
 
@@ -66,11 +67,12 @@ QMLPanelDelegate::QMLPanelDelegate(
         const iscore::GUIApplicationContext& ctx):
     iscore::PanelDelegate{ctx}
 {
-    auto widget = new QQuickWidget(QUrl("qrc:///TutorialPanel.qml"));
-    widget->setClearColor(qApp->palette().background().color());
-    widget->setResizeMode(QQuickWidget::ResizeMode::SizeRootObjectToView);
-
-    m_widget = widget;
+  QQuickView *view = new QQuickView(QUrl("qrc:///TutorialPanel.qml"));
+  auto w = QWidget::createWindowContainer(view);
+  view->setClearBeforeRendering(true);
+  view->setColor(qApp->palette().background().color());
+  view->setResizeMode(QQuickView::ResizeMode::SizeRootObjectToView);
+  m_widget = w;
 }
 
 
