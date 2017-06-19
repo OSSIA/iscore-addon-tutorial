@@ -9,15 +9,15 @@ AddBanana::AddBanana(
 {
 }
 
-void AddBanana::undo() const
+void AddBanana::undo(const iscore::DocumentContext& ctx) const
 {
-    Tutorial::ProcessModel& proc = m_model.find();
+    Tutorial::ProcessModel& proc = m_model.find(ctx);
     proc.setBananas(proc.bananas() - 1);
 }
 
-void AddBanana::redo() const
+void AddBanana::redo(const iscore::DocumentContext& ctx) const
 {
-    Tutorial::ProcessModel& proc = m_model.find();
+    Tutorial::ProcessModel& proc = m_model.find(ctx);
     proc.setBananas(proc.bananas() + 1);
 }
 

@@ -15,8 +15,8 @@ class AddEntity: public iscore::Command
             const Tutorial::ProcessModel& model,
             PolymorphicElementFactory::ConcreteKey key);
 
-        void undo() const override;
-        void redo() const override;
+        void undo(const iscore::DocumentContext& ctx) const override;
+        void redo(const iscore::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;

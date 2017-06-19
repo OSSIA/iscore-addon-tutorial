@@ -32,8 +32,8 @@ class AddBanana : public iscore::Command
     public:
         AddBanana(const Tutorial::ProcessModel& model);
 
-        void undo() const override;
-        void redo() const override;
+        void undo(const iscore::DocumentContext& ctx) const override;
+        void redo(const iscore::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;

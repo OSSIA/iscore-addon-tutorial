@@ -20,18 +20,18 @@ AddEntity::AddEntity(
   // so that we can find it again.
 }
 
-void AddEntity::undo() const
+void AddEntity::undo(const iscore::DocumentContext& ctx) const
 {
-    Tutorial::ProcessModel& proc = m_model.find();
+    Tutorial::ProcessModel& proc = m_model.find(ctx);
 
     // Here we just have to remove what we have created
     proc.polymorphicEntities.remove(m_id);
 }
 
-void AddEntity::redo() const
+void AddEntity::redo(const iscore::DocumentContext& ctx) const
 {
     //! Find the object
-    Tutorial::ProcessModel& proc = m_model.find();
+    Tutorial::ProcessModel& proc = m_model.find(ctx);
 
     //! Find the factory
     auto factory = context
