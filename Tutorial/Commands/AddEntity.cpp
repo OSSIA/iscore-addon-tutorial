@@ -3,6 +3,7 @@
 #include <iscore/application/ApplicationContext.hpp>
 #include <iscore/tools/IdentifierGeneration.hpp>
 #include <ossia/detail/logger.hpp>
+#include <iscore/document/DocumentContext.hpp>
 
 namespace Tutorial
 {
@@ -34,7 +35,7 @@ void AddEntity::redo(const iscore::DocumentContext& ctx) const
     Tutorial::ProcessModel& proc = m_model.find(ctx);
 
     //! Find the factory
-    auto factory = context
+    auto factory = ctx.app
                     .interfaces<PolymorphicElementFactoryList>()
                     .get(m_key);
     if(factory)
