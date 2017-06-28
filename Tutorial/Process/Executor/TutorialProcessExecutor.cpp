@@ -32,12 +32,6 @@ void ProcessExecutor::resume()
 {
 }
 
-ossia::state_element ProcessExecutor::offset(
-    ossia::time_value off, double pos)
-{
-  return {};
-}
-
 ossia::state_element ProcessExecutor::state(ossia::time_value date, double pos)
 {
   // Date : the date in milliseconds from the beginning of the parent.
