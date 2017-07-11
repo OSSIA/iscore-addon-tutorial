@@ -37,7 +37,7 @@ ossia::state_element ProcessExecutor::state(ossia::time_value date, double pos)
   // Date : the date in milliseconds from the beginning of the parent.
   // Pos : relative position, between 0 and 1, of the execution playhead for this process.
   State::Address address{"my_device", {"a", "banana"}};
-  State::Value value = State::Value::fromValue(std::abs(qrand()) % 100);
+  ossia::value value = std::abs(qrand()) % 100;
   State::Message m;
   m.address = address;
   m.value = value;
