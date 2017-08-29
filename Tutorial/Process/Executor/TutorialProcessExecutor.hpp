@@ -21,7 +21,7 @@ class ProcessExecutor final :
     public:
         ProcessExecutor(const Device::DeviceList&);
 
-        void start() override;
+        void start(ossia::state&) override;
         void stop() override;
         void pause() override;
         void resume() override;

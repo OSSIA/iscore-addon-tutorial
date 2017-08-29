@@ -16,7 +16,7 @@ ProcessExecutor::ProcessExecutor(
 }
 
 
-void ProcessExecutor::start()
+void ProcessExecutor::start(ossia::state&)
 {
 }
 
