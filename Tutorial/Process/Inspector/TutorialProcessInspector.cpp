@@ -1,7 +1,7 @@
 #include "TutorialProcessInspector.hpp"
 #include <Tutorial/Commands/AddBanana.hpp>
 
-#include <iscore/document/DocumentContext.hpp>
+#include <score/document/DocumentContext.hpp>
 #include <ossia/detail/logger.hpp>
 #include <QFormLayout>
 #include <QLabel>
@@ -12,7 +12,7 @@ namespace Tutorial
 
 InspectorWidget::InspectorWidget(
         const Tutorial::ProcessModel& object,
-        const iscore::DocumentContext& context,
+        const score::DocumentContext& context,
         QWidget* parent):
     InspectorWidgetDelegate_T {object, parent},
     m_dispatcher{context.commandStack}

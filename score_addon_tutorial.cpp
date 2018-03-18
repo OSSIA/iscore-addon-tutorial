@@ -1,5 +1,5 @@
-#include "iscore_addon_tutorial.hpp"
-#include <iscore_addon_tutorial_commands_files.hpp>
+#include "score_addon_tutorial.hpp"
+#include <score_addon_tutorial_commands_files.hpp>
 
 #include <Tutorial/Process/TutorialProcessFactory.hpp>
 #include <Tutorial/Process/Executor/TutorialProcessExecutor.hpp>
@@ -12,73 +12,73 @@
 #include <Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.hpp>
 #include <Tutorial/Panel/TutorialPanelDelegate.hpp>
 
-#include <iscore/plugins/customfactory/FactorySetup.hpp>
+#include <score/plugins/customfactory/FactorySetup.hpp>
 
-iscore_addon_tutorial::iscore_addon_tutorial()
+score_addon_tutorial::score_addon_tutorial()
 {
 
 }
 
-iscore_addon_tutorial::~iscore_addon_tutorial()
+score_addon_tutorial::~score_addon_tutorial()
 {
 
 }
 
 /**
- * @brief iscore_addon_tutorial::required
+ * @brief score_addon_tutorial::required
  * @return Features that this plug-in requires.
  *
  * If a feature is listed here, i-score will load the
- * plug-in providing this feature (through \ref iscore::Plugin_QtInterface::offered)
+ * plug-in providing this feature (through \ref score::Plugin_QtInterface::offered)
  * before this one.
  */
-auto iscore_addon_tutorial::required() const
-  -> std::vector<iscore::PluginKey>
+auto score_addon_tutorial::required() const
+  -> std::vector<score::PluginKey>
 {
     return {};
 }
 
 /**
- * @brief iscore_addon_tutorial::updateSaveFile
+ * @brief score_addon_tutorial::updateSaveFile
  * This function is called if someone tries to load
  * a save file that was created with a previous version
  * of this plug-in.
  * This allows to update the JSON data in order to load
  * it in the current version.
  */
-void iscore_addon_tutorial::updateSaveFile(
+void score_addon_tutorial::updateSaveFile(
         QJsonObject& obj,
-        iscore::Version obj_version,
-        iscore::Version current_version)
+        score::Version obj_version,
+        score::Version current_version)
 {
 
 }
 
 /**
- * @brief iscore_addon_tutorial::factoryFamilies
+ * @brief score_addon_tutorial::factoryFamilies
  * This function allows the plug-in to provide new factory types.
  * All plug-ins will be scanned for factories of the provided type.
  *
  * For instance, a new interface to display some elements in a toolbar.
  *
- * Elements registered here can then be used through an \ref iscore::ApplicationContext
+ * Elements registered here can then be used through an \ref score::ApplicationContext
  * instance :
  *
  * \code
- * auto& ctx = iscore::AppContext();
+ * auto& ctx = score::AppContext();
  * auto& my_factories = ctx.interfaces<Tutorial::PolymorphicElementFactoryList>();
  * \endcode
  */
-std::vector<std::unique_ptr<iscore::InterfaceListBase> >
-iscore_addon_tutorial::factoryFamilies()
+std::vector<std::unique_ptr<score::InterfaceListBase> >
+score_addon_tutorial::factoryFamilies()
 {
-    return make_ptr_vector<iscore::InterfaceListBase,
+    return make_ptr_vector<score::InterfaceListBase,
             Tutorial::PolymorphicElementFactoryList>();
 }
 
 
 /**
- * @brief iscore_addon_tutorial::factories
+ * @brief score_addon_tutorial::factories
  *
  * This function allows the plug-in to provide implementations for the
  * factory types provided earlier.
@@ -91,7 +91,7 @@ iscore_addon_tutorial::factoryFamilies()
  *
  * \code
  * // Get a context or use an existing one
- * auto& ctx = iscore::AppContext();
+ * auto& ctx = score::AppContext();
  *
  * // Get the list of factories that we are looking for
  * auto& my_factories = ctx.interfaces<Process::ProcessList>();
@@ -107,26 +107,26 @@ iscore_addon_tutorial::factoryFamilies()
  * However, it should rarely be necessary to access a particular factory.
  * The general case should be getting a factory according to an user input.
  */
-std::vector<std::unique_ptr<iscore::InterfaceBase> >
-iscore_addon_tutorial::factories(
-        const iscore::ApplicationContext& ctx,
-        const iscore::InterfaceKey& key) const
+std::vector<std::unique_ptr<score::InterfaceBase> >
+score_addon_tutorial::factories(
+        const score::ApplicationContext& ctx,
+        const score::InterfaceKey& key) const
 {
     return instantiate_factories<
-            iscore::ApplicationContext,
+            score::ApplicationContext,
         FW<
            Process::ProcessModelFactory, // An abstract factory
            Tutorial::ProcessFactory // followed by all the matching concrete factories
           >,
         FW<Process::InspectorWidgetDelegateFactory,
            Tutorial::InspectorFactory>,
-        FW<Engine::Execution::ProcessComponentFactory,
-           Tutorial::ProcessExecutorComponentFactory>,
+        // FW<Engine::Execution::ProcessComponentFactory,
+        //   Tutorial::ProcessExecutorComponentFactory>,
         FW<Engine::LocalTree::ProcessComponentFactory,
            Tutorial::LocalTreeProcessComponentFactory>,
-        FW<iscore::DocumentPluginFactory,
+        FW<score::DocumentPluginFactory,
            Tutorial::DocumentPluginFactory>,
-        FW<iscore::PanelDelegateFactory,
+        FW<score::PanelDelegateFactory,
            Tutorial::PanelDelegateFactory,
             Tutorial::QMLPanelDelegateFactory
             >,
@@ -139,25 +139,25 @@ iscore_addon_tutorial::factories(
 }
 
 /**
- * @brief iscore_addon_tutorial::make_applicationPlugin
+ * @brief score_addon_tutorial::make_applicationPlugin
  *
  * This function allows to instantiate an application-wide object.
  * These objects are instantiated before any factory.
  */
-iscore::GUIApplicationPlugin*
-iscore_addon_tutorial::make_guiApplicationPlugin(
-        const iscore::GUIApplicationContext& app)
+score::GUIApplicationPlugin*
+score_addon_tutorial::make_guiApplicationPlugin(
+        const score::GUIApplicationContext& app)
 {
     return new Tutorial::ApplicationPlugin{app};
 }
 
 /**
- * @brief iscore_addon_tutorial::make_commands
+ * @brief score_addon_tutorial::make_commands
  * This function provides the list of commands available with this
  * plug-in.
  */
 std::pair<const CommandGroupKey, CommandGeneratorMap>
-iscore_addon_tutorial::make_commands()
+score_addon_tutorial::make_commands()
 {
     using namespace Tutorial;
     std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{
@@ -165,12 +165,12 @@ iscore_addon_tutorial::make_commands()
         CommandGeneratorMap{}};
 
     // CMake generates the "addon_commands.hpp" and "addon_commands_file.hpp"
-    // by scanning the source files for \ref ISCORE_COMMAND_DECL or \ref ISCORE_COMMAND_DECL_T.
+    // by scanning the source files for \ref SCORE_COMMAND_DECL or \ref SCORE_COMMAND_DECL_T.
     using Types = TypeList<
-#include <iscore_addon_tutorial_commands.hpp>
+#include <score_addon_tutorial_commands.hpp>
       >;
 
-    for_each_type<Types>(iscore::commands::FactoryInserter{cmds.second});
+    for_each_type<Types>(score::commands::FactoryInserter{cmds.second});
 
     return cmds;
 }

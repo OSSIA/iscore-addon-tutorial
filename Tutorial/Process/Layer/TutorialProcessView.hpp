@@ -13,7 +13,7 @@ class TutorialView final : public Process::LayerView
 
         void setText(const QString&);
 
-    signals:
+    Q_SIGNALS:
         void doubleClicked();
 
     private:

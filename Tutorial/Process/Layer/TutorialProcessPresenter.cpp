@@ -1,7 +1,7 @@
 #include <Tutorial/Process/Layer/TutorialProcessPresenter.hpp>
 #include <Tutorial/Process/Layer/TutorialProcessView.hpp>
 #include <Tutorial/Commands/AddEntity.hpp>
-#include <iscore/command/Dispatchers/CommandDispatcher.hpp>
+#include <score/command/Dispatchers/CommandDispatcher.hpp>
 
 
 namespace Tutorial
@@ -85,7 +85,7 @@ void TutorialPresenter::on_doubleClicked()
       auto factory_it = entity_list.begin(); // iterator<std::pair<key, value>>;
 
       //! This key will allow us to refer to this specific factory in the future.
-      //! Objects inheriting from iscore::SerializableInterface also have a method that gives this key.
+      //! Objects inheriting from score::SerializableInterface also have a method that gives this key.
       auto factory_key = factory_it->concreteKey();
 
       CommandDispatcher<> disp{m_context.context.commandStack};

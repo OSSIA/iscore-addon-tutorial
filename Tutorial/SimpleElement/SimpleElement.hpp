@@ -1,5 +1,5 @@
 #pragma once
-#include <iscore/model/IdentifiedObject.hpp>
+#include <score/model/IdentifiedObject.hpp>
 
 namespace Tutorial
 {

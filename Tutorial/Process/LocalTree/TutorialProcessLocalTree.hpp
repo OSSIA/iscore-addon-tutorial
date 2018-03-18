@@ -6,10 +6,6 @@ namespace Tutorial
 {
 class ProcessModel;
 
-class EffectComponent;
-class EffectProcessComponent;
-class EffectFactoryList;
-
 //! This component displays informations about an object in the Device Explorer,
 //! in the left panel.
 class LocalTreeProcessComponent :
@@ -19,7 +15,7 @@ class LocalTreeProcessComponent :
 
     public:
        LocalTreeProcessComponent(
-               const Id<iscore::Component>& id,
+               const Id<score::Component>& id,
                ossia::net::node_base& parent,
                Tutorial::ProcessModel& scenario,
                Engine::LocalTree::DocumentPlugin& doc,

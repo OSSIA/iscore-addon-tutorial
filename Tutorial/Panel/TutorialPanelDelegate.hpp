@@ -1,6 +1,6 @@
 #pragma once
-#include <iscore/plugins/panel/PanelDelegate.hpp>
-#include <iscore/plugins/panel/PanelDelegateFactory.hpp>
+#include <score/plugins/panel/PanelDelegate.hpp>
+#include <score/plugins/panel/PanelDelegateFactory.hpp>
 
 namespace Tutorial
 {
@@ -9,20 +9,20 @@ namespace Tutorial
  */
 class PanelDelegate final :
         public QObject,
-        public iscore::PanelDelegate
+        public score::PanelDelegate
 {
     public:
         PanelDelegate(
-                const iscore::GUIApplicationContext& ctx);
+                const score::GUIApplicationContext& ctx);
 
     private:
         QWidget *widget() override;
 
-        const iscore::PanelStatus& defaultPanelStatus() const override;
+        const score::PanelStatus& defaultPanelStatus() const override;
 
         void on_modelChanged(
-                iscore::MaybeDocument oldm,
-                iscore::MaybeDocument newm) override;
+                score::MaybeDocument oldm,
+                score::MaybeDocument newm) override;
 
         void setNewSelection(const Selection& s) override;
 
@@ -30,12 +30,12 @@ class PanelDelegate final :
 };
 
 class PanelDelegateFactory final :
-        public iscore::PanelDelegateFactory
+        public score::PanelDelegateFactory
 {
-        ISCORE_CONCRETE("11114a3b-f123-42f6-84d0-b3af124d5689")
+        SCORE_CONCRETE("11114a3b-f123-42f6-84d0-b3af124d5689")
 
-        std::unique_ptr<iscore::PanelDelegate> make(
-                const iscore::GUIApplicationContext& ctx) override;
+        std::unique_ptr<score::PanelDelegate> make(
+                const score::GUIApplicationContext& ctx) override;
 };
 
 
@@ -44,20 +44,20 @@ class PanelDelegateFactory final :
  */
 class QMLPanelDelegate final :
         public QObject,
-        public iscore::PanelDelegate
+        public score::PanelDelegate
 {
     public:
         QMLPanelDelegate(
-                const iscore::GUIApplicationContext& ctx);
+                const score::GUIApplicationContext& ctx);
 
     private:
         QWidget *widget() override;
 
-        const iscore::PanelStatus& defaultPanelStatus() const override;
+        const score::PanelStatus& defaultPanelStatus() const override;
 
         void on_modelChanged(
-                iscore::MaybeDocument oldm,
-                iscore::MaybeDocument newm) override;
+                score::MaybeDocument oldm,
+                score::MaybeDocument newm) override;
 
         void setNewSelection(const Selection& s) override;
 
@@ -65,12 +65,12 @@ class QMLPanelDelegate final :
 };
 
 class QMLPanelDelegateFactory final :
-        public iscore::PanelDelegateFactory
+        public score::PanelDelegateFactory
 {
-        ISCORE_CONCRETE("3AB171A5-AB14-455A-B966-97E3898C86D4")
+        SCORE_CONCRETE("3AB171A5-AB14-455A-B966-97E3898C86D4")
 
-        std::unique_ptr<iscore::PanelDelegate> make(
-                const iscore::GUIApplicationContext& ctx) override;
+        std::unique_ptr<score::PanelDelegate> make(
+                const score::GUIApplicationContext& ctx) override;
 };
 
 }

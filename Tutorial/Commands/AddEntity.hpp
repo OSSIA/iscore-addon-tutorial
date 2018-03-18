@@ -1,22 +1,22 @@
 #pragma once
-#include <iscore/command/Command.hpp>
+#include <score/command/Command.hpp>
 #include <Tutorial/Process/TutorialProcessModel.hpp>
 #include <Tutorial/Commands/TutorialCommandFactory.hpp>
 #include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
 
 namespace Tutorial
 {
-class AddEntity: public iscore::Command
+class AddEntity: public score::Command
 {
-        ISCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddEntity, "Add a polymorphic entity")
+        SCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddEntity, "Add a polymorphic entity")
 
     public:
         AddEntity(
             const Tutorial::ProcessModel& model,
             PolymorphicElementFactory::ConcreteKey key);
 
-        void undo(const iscore::DocumentContext& ctx) const override;
-        void redo(const iscore::DocumentContext& ctx) const override;
+        void undo(const score::DocumentContext& ctx) const override;
+        void redo(const score::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;

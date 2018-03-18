@@ -23,21 +23,15 @@ class ConcretePolymorphicEntity final : public PolymorphicEntity
         Q_OBJECT
 
         // Necessary to allow the JSONReader, etc. functions to access private members.
-        ISCORE_SERIALIZE_FRIENDS
+        SCORE_SERIALIZE_FRIENDS
 
-        // Default implementations for the functions defined in iscore::SerializableInterface.
+        // Default implementations for the functions defined in score::SerializableInterface.
         MODEL_METADATA_IMPL(ConcretePolymorphicEntity)
 
     public:
         // Standard constructor
         ConcretePolymorphicEntity(
                 const Id<PolymorphicEntity>& id,
-                QObject* parent);
-
-        // Clone constructor
-        ConcretePolymorphicEntity(
-                const ConcretePolymorphicEntity& source,
-                const Id<PolymorphicEntity>&,
                 QObject* parent);
 
         // Load constructor

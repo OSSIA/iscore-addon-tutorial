@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.1)
-project(iscore_addon_tutorial LANGUAGES CXX)
+project(score_addon_tutorial LANGUAGES CXX)
 
+find_package(Qt5 COMPONENTS QuickWidgets)
 # General initialization
-iscore_common_setup()
+score_common_setup()
 
 # Source files
 set(HDRS
@@ -36,7 +37,7 @@ set(HDRS
     Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp
     Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.hpp
 
-    iscore_addon_tutorial.hpp
+    score_addon_tutorial.hpp
 
 )
 set(SRCS
@@ -62,19 +63,20 @@ set(SRCS
     Tutorial/PolymorphicEntity/PolymorphicEntityFactory.cpp
     Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.cpp
 
-    iscore_addon_tutorial.cpp
+    score_addon_tutorial.cpp
 )
 
 qt5_add_resources(QRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources/Tutorial.qrc")
 
 # Creation of the library
 add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
+score_moc_headers(${PROJECT_NAME} "${HDRS}")
 
 # Code generation
-iscore_generate_command_list_file(${PROJECT_NAME} "${HDRS}")
+score_generate_command_list_file(${PROJECT_NAME} "${HDRS}")
 
 # Link
-target_link_libraries(${PROJECT_NAME} PUBLIC iscore_plugin_engine)
+target_link_libraries(${PROJECT_NAME} PUBLIC score_plugin_engine Qt5::QuickWidgets)
 
 # Target-specific options
-setup_iscore_plugin(${PROJECT_NAME})
+setup_score_plugin(${PROJECT_NAME})

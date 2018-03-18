@@ -5,6 +5,6 @@
 namespace Tutorial
 {
 using ProcessFactory =
-    Process::GenericProcessModelFactory<
+    Process::ProcessFactory_T<
         Tutorial::ProcessModel>;
 }

@@ -11,15 +11,6 @@ ConcretePolymorphicEntity::ConcretePolymorphicEntity(
 
 }
 
-ConcretePolymorphicEntity::ConcretePolymorphicEntity(
-        const ConcretePolymorphicEntity& source,
-        const Id<PolymorphicEntity>& id,
-        QObject* parent):
-    PolymorphicEntity{source, id, parent}
-{
-
-}
-
 int ConcretePolymorphicEntity::someVirtualMethod() const
 {
   return 1234;

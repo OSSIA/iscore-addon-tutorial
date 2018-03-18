@@ -1,5 +1,5 @@
 #pragma once
-#include <iscore/plugins/application/GUIApplicationPlugin.hpp>
+#include <score/plugins/application/GUIApplicationPlugin.hpp>
 
 namespace Tutorial
 {
@@ -7,12 +7,12 @@ namespace Tutorial
  * @brief The ApplicationPlugin class
  *
  * The ApplicationPlugin is a class that will be instantiated only once.
- * It is accessible in the whole application, by using an \ref iscore::ApplicationContext instance.
+ * It is accessible in the whole application, by using an \ref score::ApplicationContext instance.
  *
  * For instance:
  *
  * \code
- * auto& ctx = iscore::AppContext();
+ * auto& ctx = score::AppContext();
  * auto& my_plugin = ctx.applicationPlugin<Tutorial::ApplicationPlugin>();
  * \endcode
  *
@@ -22,28 +22,28 @@ namespace Tutorial
  * It is also used to add document plug-ins to a newly created or loaded document.
  */
 class ApplicationPlugin final :
-        public iscore::GUIApplicationPlugin
+        public score::GUIApplicationPlugin
 {
     public:
         ApplicationPlugin(
-                const iscore::GUIApplicationContext& app);
+                const score::GUIApplicationContext& app);
 
     protected:
-        void on_newDocument(iscore::Document& doc) override;
+        void on_newDocument(score::Document& doc) override;
 
         void on_documentChanged(
-                iscore::Document* olddoc,
-                iscore::Document* newdoc) override;
+                score::Document* olddoc,
+                score::Document* newdoc) override;
 
-        iscore::GUIElements makeGUIElements() override;
+        score::GUIElements makeGUIElements() override;
 
         bool handleStartup() override;
 
-        void on_initDocument(iscore::Document& doc) override;
+        void on_initDocument(score::Document& doc) override;
 
-        void on_loadedDocument(iscore::Document& doc) override;
+        void on_loadedDocument(score::Document& doc) override;
 
-        void on_createdDocument(iscore::Document& doc) override;
+        void on_createdDocument(score::Document& doc) override;
 
         void prepareNewDocument() override;
 

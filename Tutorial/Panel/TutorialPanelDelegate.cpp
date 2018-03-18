@@ -15,8 +15,8 @@ namespace Tutorial
 {
 
 PanelDelegate::PanelDelegate(
-        const iscore::GUIApplicationContext& ctx):
-    iscore::PanelDelegate{ctx}
+        const score::GUIApplicationContext& ctx):
+    score::PanelDelegate{ctx}
 {
     m_widget = new QWidget;
     auto lay = new QFormLayout{m_widget};
@@ -29,9 +29,9 @@ QWidget* PanelDelegate::widget()
     return m_widget;
 }
 
-const iscore::PanelStatus& PanelDelegate::defaultPanelStatus() const
+const score::PanelStatus& PanelDelegate::defaultPanelStatus() const
 {
-    static const iscore::PanelStatus status{
+    static const score::PanelStatus status{
         true,
         Qt::RightDockWidgetArea,
         10,
@@ -42,8 +42,8 @@ const iscore::PanelStatus& PanelDelegate::defaultPanelStatus() const
 }
 
 void PanelDelegate::on_modelChanged(
-        iscore::MaybeDocument oldm,
-        iscore::MaybeDocument newm)
+        score::MaybeDocument oldm,
+        score::MaybeDocument newm)
 {
 
 }
@@ -54,8 +54,8 @@ void PanelDelegate::setNewSelection(
 }
 
 
-std::unique_ptr<iscore::PanelDelegate> PanelDelegateFactory::make(
-        const iscore::GUIApplicationContext& ctx)
+std::unique_ptr<score::PanelDelegate> PanelDelegateFactory::make(
+        const score::GUIApplicationContext& ctx)
 {
     return std::make_unique<PanelDelegate>(ctx);
 }
@@ -64,8 +64,8 @@ std::unique_ptr<iscore::PanelDelegate> PanelDelegateFactory::make(
 
 
 QMLPanelDelegate::QMLPanelDelegate(
-        const iscore::GUIApplicationContext& ctx):
-    iscore::PanelDelegate{ctx}
+        const score::GUIApplicationContext& ctx):
+    score::PanelDelegate{ctx}
 {
   QQuickView *view = new QQuickView(QUrl("qrc:///TutorialPanel.qml"));
   auto w = QWidget::createWindowContainer(view);
@@ -81,9 +81,9 @@ QWidget* QMLPanelDelegate::widget()
     return m_widget;
 }
 
-const iscore::PanelStatus& QMLPanelDelegate::defaultPanelStatus() const
+const score::PanelStatus& QMLPanelDelegate::defaultPanelStatus() const
 {
-    static const iscore::PanelStatus status{
+    static const score::PanelStatus status{
         true,
         Qt::RightDockWidgetArea,
         100,
@@ -94,8 +94,8 @@ const iscore::PanelStatus& QMLPanelDelegate::defaultPanelStatus() const
 }
 
 void QMLPanelDelegate::on_modelChanged(
-        iscore::MaybeDocument oldm,
-        iscore::MaybeDocument newm)
+        score::MaybeDocument oldm,
+        score::MaybeDocument newm)
 {
 
 }
@@ -106,8 +106,8 @@ void QMLPanelDelegate::setNewSelection(
 }
 
 
-std::unique_ptr<iscore::PanelDelegate> QMLPanelDelegateFactory::make(
-        const iscore::GUIApplicationContext& ctx)
+std::unique_ptr<score::PanelDelegate> QMLPanelDelegateFactory::make(
+        const score::GUIApplicationContext& ctx)
 {
     return std::make_unique<QMLPanelDelegate>(ctx);
 }

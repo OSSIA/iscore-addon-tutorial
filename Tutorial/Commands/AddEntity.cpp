@@ -1,9 +1,9 @@
 #include "AddEntity.hpp"
-#include <iscore/model/path/PathSerialization.hpp>
-#include <iscore/application/ApplicationContext.hpp>
-#include <iscore/tools/IdentifierGeneration.hpp>
+#include <score/model/path/PathSerialization.hpp>
+#include <score/application/ApplicationContext.hpp>
+#include <score/tools/IdentifierGeneration.hpp>
 #include <ossia/detail/logger.hpp>
-#include <iscore/document/DocumentContext.hpp>
+#include <score/document/DocumentContext.hpp>
 
 namespace Tutorial
 {
@@ -21,7 +21,7 @@ AddEntity::AddEntity(
   // so that we can find it again.
 }
 
-void AddEntity::undo(const iscore::DocumentContext& ctx) const
+void AddEntity::undo(const score::DocumentContext& ctx) const
 {
     Tutorial::ProcessModel& proc = m_model.find(ctx);
 
@@ -29,7 +29,7 @@ void AddEntity::undo(const iscore::DocumentContext& ctx) const
     proc.polymorphicEntities.remove(m_id);
 }
 
-void AddEntity::redo(const iscore::DocumentContext& ctx) const
+void AddEntity::redo(const score::DocumentContext& ctx) const
 {
     //! Find the object
     Tutorial::ProcessModel& proc = m_model.find(ctx);

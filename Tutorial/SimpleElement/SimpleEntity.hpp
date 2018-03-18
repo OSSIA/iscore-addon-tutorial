@@ -1,10 +1,10 @@
 #pragma once
-#include <iscore/model/Entity.hpp>
+#include <score/model/Entity.hpp>
 
 namespace Tutorial
 {
 class SimpleEntity final :
-        public iscore::Entity<SimpleEntity>
+        public score::Entity<SimpleEntity>
 {
         Q_OBJECT
 

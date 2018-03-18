@@ -4,10 +4,10 @@ namespace Tutorial
 {
 
 DocumentPlugin::DocumentPlugin(
-        const iscore::DocumentContext& ctx,
-        Id<iscore::DocumentPlugin> id,
+        const score::DocumentContext& ctx,
+        Id<score::DocumentPlugin> id,
         QObject* parent):
-    iscore::SerializableDocumentPlugin{ctx, std::move(id), "DocumentPlugin", parent}
+    score::SerializableDocumentPlugin{ctx, std::move(id), "DocumentPlugin", parent}
 {
 }
 

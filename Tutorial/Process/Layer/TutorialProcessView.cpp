@@ -44,7 +44,7 @@ void TutorialView::setText(const QString& txt)
 
 void TutorialView::paint_impl(QPainter* painter) const
 {
-    auto font = iscore::Skin::instance().MonoFont;
+    auto font = score::Skin::instance().MonoFont;
     font.setPointSize(25);
     painter->setFont(font);
     painter->setPen(Qt::white);
@@ -60,7 +60,7 @@ void TutorialView::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
 void TutorialView::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
-  emit doubleClicked();
+  doubleClicked();
 
   event->accept();
 }

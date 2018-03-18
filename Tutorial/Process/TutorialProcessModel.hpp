@@ -5,13 +5,13 @@
 #include <Tutorial/SimpleElement/SimpleElement.hpp>
 #include <Tutorial/PolymorphicEntity/PolymorphicEntity.hpp>
 
-#include <iscore/model/EntityMap.hpp>
+#include <score/model/EntityMap.hpp>
 
 namespace Tutorial
 {
 class ProcessModel final : public Process::ProcessModel
 {
-        ISCORE_SERIALIZE_FRIENDS
+        SCORE_SERIALIZE_FRIENDS
         PROCESS_METADATA_IMPL(Tutorial::ProcessModel)
 
         Q_PROPERTY(int bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
@@ -30,20 +30,16 @@ class ProcessModel final : public Process::ProcessModel
             vis.writeTo(*this);
         }
 
-        iscore::EntityMap<SimpleElement> simpleElements;
-        iscore::EntityMap<PolymorphicEntity> polymorphicEntities;
+        score::EntityMap<SimpleElement> simpleElements;
+        score::EntityMap<PolymorphicEntity> polymorphicEntities;
 
         int bananas() const;
         void setBananas(int bananas);
 
-    signals:
+    Q_SIGNALS:
         void bananasChanged(int bananas);
 
     private:
-        ProcessModel(const ProcessModel& source,
-                     const Id<Process::ProcessModel>& id,
-                     QObject* parent);
-
         QString prettyName() const override;
         void startExecution() override;
         void stopExecution() override;

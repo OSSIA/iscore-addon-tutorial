@@ -1,5 +1,5 @@
 #pragma once
-#include <iscore/command/Command.hpp>
+#include <score/command/Command.hpp>
 #include <Tutorial/Process/TutorialProcessModel.hpp>
 #include <Tutorial/Commands/TutorialCommandFactory.hpp>
 
@@ -13,7 +13,7 @@ namespace Tutorial
  *
  * The command classes also must be able to serialize themselves.
  * This is used :
- * - For google-docs like edition with iscore-addon-network.
+ * - For google-docs like edition with score-addon-network.
  * - For restoring the application if there is a crash.
  *
  * It is *extremely* important not to save pointers to anything in the commands.
@@ -23,17 +23,17 @@ namespace Tutorial
  *
  * Instead, we save paths to objects in the object tree with \ref Path.
  */
-class AddBanana : public iscore::Command
+class AddBanana : public score::Command
 {
         // The following macro is used to allow CMake to parseall the commands in a plug-in,
         // and to provide some metadata (e.g. the name that will be shown to the user)
-        ISCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddBanana, "Add a banana")
+        SCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddBanana, "Add a banana")
 
     public:
         AddBanana(const Tutorial::ProcessModel& model);
 
-        void undo(const iscore::DocumentContext& ctx) const override;
-        void redo(const iscore::DocumentContext& ctx) const override;
+        void undo(const score::DocumentContext& ctx) const override;
+        void redo(const score::DocumentContext& ctx) const override;
 
     protected:
         void serializeImpl(DataStreamInput & s) const override;

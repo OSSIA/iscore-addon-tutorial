@@ -1,7 +1,7 @@
 #pragma once
-#include <iscore/plugins/customfactory/FactoryInterface.hpp>
-#include <iscore/serialization/VisitorCommon.hpp>
-#include <iscore_addon_tutorial_export.h>
+#include <score/plugins/customfactory/FactoryInterface.hpp>
+#include <score/serialization/VisitorCommon.hpp>
+#include <score_addon_tutorial_export.h>
 
 
 namespace Tutorial
@@ -9,11 +9,11 @@ namespace Tutorial
 class PolymorphicEntity;
 
 //! The factory class that creates and loads our PolymorphicEntity subclasses
-class ISCORE_ADDON_TUTORIAL_EXPORT PolymorphicElementFactory :
-        public iscore::Interface<PolymorphicElementFactory>
+class SCORE_ADDON_TUTORIAL_EXPORT PolymorphicElementFactory :
+        public score::Interface<PolymorphicElementFactory>
 {
         //! Uniquely identifies this kind of factory.
-        ISCORE_INTERFACE("a7c67e8c-9302-4f12-9deb-6d020f74d1d4")
+        SCORE_INTERFACE("a7c67e8c-9302-4f12-9deb-6d020f74d1d4")
 
         public:
             virtual ~PolymorphicElementFactory();
@@ -66,16 +66,16 @@ class PolymorphicElementFactory_T final :
                 const VisitorVariant& vis,
                 QObject* parent) const final override
         {
-            return iscore::deserialize_dyn(vis, [&] (auto&& deserializer)
+            return score::deserialize_dyn(vis, [&] (auto&& deserializer)
             { return new Model_T{deserializer, parent}; });
         }
 };
 
 
 //! Finally, this is where all the factories for the PolymorphicElement subtypes will be stored.
-//! They are accessible through iscore::ApplicationContext.
-class ISCORE_ADDON_TUTORIAL_EXPORT PolymorphicElementFactoryList final :
-        public iscore::InterfaceList<PolymorphicElementFactory>
+//! They are accessible through score::ApplicationContext.
+class SCORE_ADDON_TUTORIAL_EXPORT PolymorphicElementFactoryList final :
+        public score::InterfaceList<PolymorphicElementFactory>
 {
     public:
         using object_type = PolymorphicEntity;

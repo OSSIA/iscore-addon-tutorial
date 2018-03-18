@@ -1,5 +1,5 @@
 #include "AddBanana.hpp"
-#include <iscore/model/path/PathSerialization.hpp>
+#include <score/model/path/PathSerialization.hpp>
 
 namespace Tutorial
 {
@@ -9,13 +9,13 @@ AddBanana::AddBanana(
 {
 }
 
-void AddBanana::undo(const iscore::DocumentContext& ctx) const
+void AddBanana::undo(const score::DocumentContext& ctx) const
 {
     Tutorial::ProcessModel& proc = m_model.find(ctx);
     proc.setBananas(proc.bananas() - 1);
 }
 
-void AddBanana::redo(const iscore::DocumentContext& ctx) const
+void AddBanana::redo(const score::DocumentContext& ctx) const
 {
     Tutorial::ProcessModel& proc = m_model.find(ctx);
     proc.setBananas(proc.bananas() + 1);

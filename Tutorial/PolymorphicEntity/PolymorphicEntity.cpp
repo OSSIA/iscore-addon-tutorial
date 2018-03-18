@@ -11,15 +11,6 @@ PolymorphicEntity::PolymorphicEntity(
 
 }
 
-PolymorphicEntity::PolymorphicEntity(
-        const PolymorphicEntity& source,
-        const Id<PolymorphicEntity>& id,
-        QObject* parent):
-    Entity{id, "PolymorphicElement", parent}
-{
-
-}
-
 PolymorphicEntity::~PolymorphicEntity()
 {
 

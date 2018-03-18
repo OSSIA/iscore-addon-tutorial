@@ -24,16 +24,7 @@ void ProcessModel::setBananas(int bananas)
         return;
 
     m_bananas = bananas;
-    emit bananasChanged(bananas);
-}
-
-ProcessModel::ProcessModel(
-        const ProcessModel& source,
-        const Id<Process::ProcessModel>& id,
-        QObject* parent):
-    Process::ProcessModel{source, id, "TutorialProcess", parent}
-{
-
+    bananasChanged(bananas);
 }
 
 QString ProcessModel::prettyName() const

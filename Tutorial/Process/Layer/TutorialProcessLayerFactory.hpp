@@ -7,7 +7,7 @@
 
 namespace Tutorial
 {
-    using LayerFactory = Process::GenericLayerFactory<
+    using LayerFactory = Process::LayerFactory_T<
     Tutorial::ProcessModel,
     Tutorial::TutorialPresenter,
     Tutorial::TutorialView,
