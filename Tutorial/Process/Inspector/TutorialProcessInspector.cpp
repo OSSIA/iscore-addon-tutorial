@@ -43,8 +43,8 @@ InspectorWidget::InspectorWidget(
     auto entity_label = new QLabel{this};
     lay->addRow("Entity count", entity_label);
 
-    object.polymorphicEntities.added.connect<InspectorWidget, &InspectorWidget::on_entityAdded>(this);
-    object.polymorphicEntities.removing.connect<InspectorWidget, &InspectorWidget::on_entityRemoved>(this);
+    object.polymorphicEntities.added.connect<&InspectorWidget::on_entityAdded>(this);
+    object.polymorphicEntities.removing.connect<&InspectorWidget::on_entityRemoved>(this);
 }
 
 void InspectorWidget::on_entityAdded(const PolymorphicEntity& e)

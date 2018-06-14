@@ -8,27 +8,27 @@ namespace Tutorial
 {
 class AddEntity: public score::Command
 {
-        SCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddEntity, "Add a polymorphic entity")
+  SCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddEntity, "Add a polymorphic entity")
 
-    public:
-        AddEntity(
-            const Tutorial::ProcessModel& model,
-            PolymorphicElementFactory::ConcreteKey key);
+  public:
+    AddEntity(
+      const Tutorial::ProcessModel& model,
+      PolymorphicElementFactory::ConcreteKey key);
 
-        void undo(const score::DocumentContext& ctx) const override;
-        void redo(const score::DocumentContext& ctx) const override;
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
 
-    protected:
-        void serializeImpl(DataStreamInput & s) const override;
-        void deserializeImpl(DataStreamOutput & s) override;
+protected:
+  void serializeImpl(DataStreamInput & s) const override;
+  void deserializeImpl(DataStreamOutput & s) override;
 
-    private:
-        Path<ProcessModel> m_model;
+private:
+  Path<ProcessModel> m_model;
 
-        //! Key to identify the instance we want to create
-        PolymorphicElementFactory::ConcreteKey m_key;
+  //! Key to identify the instance we want to create
+  PolymorphicElementFactory::ConcreteKey m_key;
 
-        //! The identifier of the object to be created
-        Id<PolymorphicEntity> m_id;
+  //! The identifier of the object to be created
+  Id<PolymorphicEntity> m_id;
 };
 }

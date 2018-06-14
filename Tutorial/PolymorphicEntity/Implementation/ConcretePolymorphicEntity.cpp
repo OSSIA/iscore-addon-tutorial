@@ -1,12 +1,15 @@
 #include "ConcretePolymorphicEntity.hpp"
 
+#include <wobjectimpl.h>
+
+W_OBJECT_IMPL(Tutorial::ConcretePolymorphicEntity)
 namespace Tutorial
 {
 
 ConcretePolymorphicEntity::ConcretePolymorphicEntity(
-        const Id<PolymorphicEntity>& id,
-        QObject* parent):
-    PolymorphicEntity{id, parent}
+    const Id<PolymorphicEntity>& id,
+    QObject* parent):
+  PolymorphicEntity{id, parent}
 {
 
 }
@@ -23,26 +26,26 @@ int ConcretePolymorphicEntity::someVirtualMethod() const
 // be called from the point of view of the PolymorphicElement class.
 template <>
 void DataStreamReader::read(
-        const Tutorial::ConcretePolymorphicEntity& p)
+    const Tutorial::ConcretePolymorphicEntity& p)
 {
-    insertDelimiter();
+  insertDelimiter();
 }
 
 template <>
 void DataStreamWriter::write(
-        Tutorial::ConcretePolymorphicEntity& p)
+    Tutorial::ConcretePolymorphicEntity& p)
 {
-    checkDelimiter();
+  checkDelimiter();
 }
 
 template <>
 void JSONObjectReader::read(
-        const Tutorial::ConcretePolymorphicEntity& p)
+    const Tutorial::ConcretePolymorphicEntity& p)
 {
 }
 
 template <>
 void JSONObjectWriter::write(
-        Tutorial::ConcretePolymorphicEntity& p)
+    Tutorial::ConcretePolymorphicEntity& p)
 {
 }

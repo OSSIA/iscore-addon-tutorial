@@ -11,49 +11,46 @@ namespace Tutorial
 {
 class ProcessModel final : public Process::ProcessModel
 {
-        SCORE_SERIALIZE_FRIENDS
-        PROCESS_METADATA_IMPL(Tutorial::ProcessModel)
+  SCORE_SERIALIZE_FRIENDS
+  PROCESS_METADATA_IMPL(Tutorial::ProcessModel)
 
-        Q_PROPERTY(int bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
+  W_OBJECT(ProcessModel)
 
-        Q_OBJECT
+  public:
+    ProcessModel(const TimeVal& duration,
+                 const Id<Process::ProcessModel>& id,
+                 QObject* parent);
 
-    public:
-        ProcessModel(const TimeVal& duration,
-                     const Id<Process::ProcessModel>& id,
-                     QObject* parent);
+  template<typename Impl>
+  ProcessModel(Impl& vis, QObject* parent) :
+    Process::ProcessModel{vis, parent}
+  {
+    vis.writeTo(*this);
+  }
 
-        template<typename Impl>
-        ProcessModel(Impl& vis, QObject* parent) :
-            Process::ProcessModel{vis, parent}
-        {
-            vis.writeTo(*this);
-        }
+  score::EntityMap<SimpleElement> simpleElements;
+  score::EntityMap<PolymorphicEntity> polymorphicEntities;
 
-        score::EntityMap<SimpleElement> simpleElements;
-        score::EntityMap<PolymorphicEntity> polymorphicEntities;
+  int bananas() const;
+  void setBananas(int bananas);
+  void bananasChanged(int bananas) W_SIGNAL(bananasChanged, bananas);
 
-        int bananas() const;
-        void setBananas(int bananas);
+  PROPERTY(int, bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
+private:
+  QString prettyName() const override;
+  void startExecution() override;
+  void stopExecution() override;
+  void reset() override;
+  ProcessStateDataInterface*startStateData() const override;
+  ProcessStateDataInterface*endStateData() const override;
+  Selection selectableChildren() const override;
+  Selection selectedChildren() const override;
+  void setSelection(const Selection& s) const override;
 
-    Q_SIGNALS:
-        void bananasChanged(int bananas);
+  void setDurationAndScale(const TimeVal& newDuration) override;
+  void setDurationAndGrow(const TimeVal& newDuration) override;
+  void setDurationAndShrink(const TimeVal& newDuration) override;
 
-    private:
-        QString prettyName() const override;
-        void startExecution() override;
-        void stopExecution() override;
-        void reset() override;
-        ProcessStateDataInterface*startStateData() const override;
-        ProcessStateDataInterface*endStateData() const override;
-        Selection selectableChildren() const override;
-        Selection selectedChildren() const override;
-        void setSelection(const Selection& s) const override;
-
-        void setDurationAndScale(const TimeVal& newDuration) override;
-        void setDurationAndGrow(const TimeVal& newDuration) override;
-        void setDurationAndShrink(const TimeVal& newDuration) override;
-
-        int m_bananas{};
+  int m_bananas{};
 };
 }

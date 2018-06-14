@@ -1,6 +1,11 @@
 #include "SimpleElement.hpp"
 #include <score/serialization/DataStreamVisitor.hpp>
 #include <score/serialization/JSONVisitor.hpp>
+
+#include <wobjectimpl.h>
+
+W_OBJECT_IMPL(Tutorial::SimpleElement)
+
 namespace Tutorial
 {
 

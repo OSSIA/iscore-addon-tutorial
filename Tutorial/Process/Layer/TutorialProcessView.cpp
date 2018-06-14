@@ -5,6 +5,8 @@
 #include <QQuickWidget>
 #include <QGraphicsProxyWidget>
 #include <QApplication>
+#include <wobjectimpl.h>
+W_OBJECT_IMPL(Tutorial::TutorialView)
 namespace Tutorial
 {
 

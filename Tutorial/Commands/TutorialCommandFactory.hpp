@@ -9,7 +9,7 @@ namespace Tutorial
  */
 inline const CommandGroupKey& CommandFactoryName()
 {
-    static const CommandGroupKey key{"Tutorial"};
-    return key;
+  static const CommandGroupKey key{"Tutorial"};
+  return key;
 }
 }

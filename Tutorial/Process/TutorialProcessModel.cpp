@@ -1,6 +1,8 @@
 #include "TutorialProcessModel.hpp"
 #include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
+#include <wobjectimpl.h>
 
+W_OBJECT_IMPL(Tutorial::ProcessModel)
 namespace Tutorial
 {
 

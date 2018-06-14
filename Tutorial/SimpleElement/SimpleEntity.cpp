@@ -1,5 +1,8 @@
 #include "SimpleEntity.hpp"
 
+#include <wobjectimpl.h>
+
+W_OBJECT_IMPL(Tutorial::SimpleEntity)
 namespace Tutorial
 {
 

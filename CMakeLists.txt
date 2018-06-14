@@ -21,8 +21,6 @@ set(HDRS
     Tutorial/ApplicationPlugin/TutorialApplicationPlugin.hpp
     Tutorial/Panel/TutorialPanelDelegate.hpp
     Tutorial/Panel/TutorialPanelDelegateFactory.hpp
-    Tutorial/StateProcess/TutorialStateProcess.hpp
-    Tutorial/StateProcess/TutorialStateProcessFactory.hpp
     Tutorial/Settings/TutorialSettingsModel.hpp
     Tutorial/Settings/TutorialSettingsView.hpp
     Tutorial/Settings/TutorialSettingsPresenter.hpp
@@ -51,7 +49,6 @@ set(SRCS
     Tutorial/Process/TutorialProcessModel.cpp
     Tutorial/ApplicationPlugin/TutorialApplicationPlugin.cpp
     Tutorial/Panel/TutorialPanelDelegate.cpp
-    Tutorial/StateProcess/TutorialStateProcess.cpp
     Tutorial/Settings/TutorialSettingsModel.cpp
     Tutorial/Settings/TutorialSettingsView.cpp
     Tutorial/Settings/TutorialSettingsPresenter.cpp
@@ -70,7 +67,7 @@ qt5_add_resources(QRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources/Tutorial.qrc")
 
 # Creation of the library
 add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
-score_moc_headers(${PROJECT_NAME} "${HDRS}")
+score_moc_headers(${PROJECT_NAME} score_addon_tutorial.hpp)
 
 # Code generation
 score_generate_command_list_file(${PROJECT_NAME} "${HDRS}")

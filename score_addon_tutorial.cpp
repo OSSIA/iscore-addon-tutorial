@@ -118,10 +118,12 @@ score_addon_tutorial::factories(
            Process::ProcessModelFactory, // An abstract factory
            Tutorial::ProcessFactory // followed by all the matching concrete factories
           >,
+        FW<Process::LayerFactory,
+           Tutorial::LayerFactory>,
         FW<Process::InspectorWidgetDelegateFactory,
            Tutorial::InspectorFactory>,
-        // FW<Engine::Execution::ProcessComponentFactory,
-        //   Tutorial::ProcessExecutorComponentFactory>,
+        FW<Engine::Execution::ProcessComponentFactory,
+          Tutorial::ProcessExecutorComponentFactory>,
         FW<Engine::LocalTree::ProcessComponentFactory,
            Tutorial::LocalTreeProcessComponentFactory>,
         FW<score::DocumentPluginFactory,
@@ -166,11 +168,10 @@ score_addon_tutorial::make_commands()
 
     // CMake generates the "addon_commands.hpp" and "addon_commands_file.hpp"
     // by scanning the source files for \ref SCORE_COMMAND_DECL or \ref SCORE_COMMAND_DECL_T.
-    using Types = TypeList<
-#include <score_addon_tutorial_commands.hpp>
-      >;
 
-    for_each_type<Types>(score::commands::FactoryInserter{cmds.second});
+    ossia::for_each_type<
+    #include <score_addon_tutorial_commands.hpp>
+        >(score::commands::FactoryInserter{cmds.second});
 
     return cmds;
 }

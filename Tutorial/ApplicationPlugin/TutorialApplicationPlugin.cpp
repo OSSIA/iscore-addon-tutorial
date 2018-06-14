@@ -4,33 +4,33 @@ namespace Tutorial
 {
 
 ApplicationPlugin::ApplicationPlugin(
-        const score::GUIApplicationContext& app):
-    GUIApplicationPlugin {app}
+    const score::GUIApplicationContext& app):
+  GUIApplicationPlugin {app}
 {
 
 }
 
 void ApplicationPlugin::on_newDocument(
-        score::Document& doc)
+    score::Document& doc)
 {
 
 }
 
 void ApplicationPlugin::on_documentChanged(
-        score::Document* olddoc,
-        score::Document* newdoc)
+    score::Document* olddoc,
+    score::Document* newdoc)
 {
 
 }
 
 score::GUIElements ApplicationPlugin::makeGUIElements()
 {
-    return {};
+  return {};
 }
 
 bool ApplicationPlugin::handleStartup()
 {
-    return false;
+  return false;
 }
 
 void ApplicationPlugin::on_initDocument(score::Document& doc)

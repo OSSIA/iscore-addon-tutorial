@@ -13,12 +13,7 @@ LocalTreeProcessComponent::LocalTreeProcessComponent(
         QObject* parent_obj):
     Engine::LocalTree::ProcessComponent_T<Tutorial::ProcessModel>{parent, proc, sys, id, "TutorialComponent", parent_obj}
 {
-    m_bananaProperty = Engine::LocalTree::add_property<int>(
-                node(), "bananas", &proc,
-                &Tutorial::ProcessModel::bananas,
-                &Tutorial::ProcessModel::setBananas,
-                &Tutorial::ProcessModel::bananasChanged,
-                this);
+  add<ProcessModel::p_bananas>(proc);
 }
 
 LocalTreeProcessComponent::~LocalTreeProcessComponent()

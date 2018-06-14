@@ -22,31 +22,31 @@ namespace Tutorial
  * It is also used to add document plug-ins to a newly created or loaded document.
  */
 class ApplicationPlugin final :
-        public score::GUIApplicationPlugin
+    public score::GUIApplicationPlugin
 {
-    public:
-        ApplicationPlugin(
-                const score::GUIApplicationContext& app);
+public:
+  ApplicationPlugin(
+      const score::GUIApplicationContext& app);
 
-    protected:
-        void on_newDocument(score::Document& doc) override;
+protected:
+  void on_newDocument(score::Document& doc) override;
 
-        void on_documentChanged(
-                score::Document* olddoc,
-                score::Document* newdoc) override;
+  void on_documentChanged(
+      score::Document* olddoc,
+      score::Document* newdoc) override;
 
-        score::GUIElements makeGUIElements() override;
+  score::GUIElements makeGUIElements() override;
 
-        bool handleStartup() override;
+  bool handleStartup() override;
 
-        void on_initDocument(score::Document& doc) override;
+  void on_initDocument(score::Document& doc) override;
 
-        void on_loadedDocument(score::Document& doc) override;
+  void on_loadedDocument(score::Document& doc) override;
 
-        void on_createdDocument(score::Document& doc) override;
+  void on_createdDocument(score::Document& doc) override;
 
-        void prepareNewDocument() override;
+  void prepareNewDocument() override;
 
-        void on_activeWindowChanged() override;
+  void on_activeWindowChanged() override;
 };
 }

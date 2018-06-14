@@ -25,21 +25,21 @@ namespace Tutorial
  */
 class AddBanana : public score::Command
 {
-        // The following macro is used to allow CMake to parseall the commands in a plug-in,
-        // and to provide some metadata (e.g. the name that will be shown to the user)
-        SCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddBanana, "Add a banana")
+  // The following macro is used to allow CMake to parseall the commands in a plug-in,
+  // and to provide some metadata (e.g. the name that will be shown to the user)
+  SCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddBanana, "Add a banana")
 
-    public:
-        AddBanana(const Tutorial::ProcessModel& model);
+  public:
+    AddBanana(const Tutorial::ProcessModel& model);
 
-        void undo(const score::DocumentContext& ctx) const override;
-        void redo(const score::DocumentContext& ctx) const override;
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
 
-    protected:
-        void serializeImpl(DataStreamInput & s) const override;
-        void deserializeImpl(DataStreamOutput & s) override;
+protected:
+  void serializeImpl(DataStreamInput & s) const override;
+  void deserializeImpl(DataStreamOutput & s) override;
 
-    private:
-        Path<ProcessModel> m_model;
+private:
+  Path<ProcessModel> m_model;
 };
 }

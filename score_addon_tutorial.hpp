@@ -54,7 +54,7 @@ class score_addon_tutorial final :
 
     public:
         score_addon_tutorial();
-        virtual ~score_addon_tutorial();
+        ~score_addon_tutorial() override;
 
     private:
         // Defined in Plugin_QtInterface

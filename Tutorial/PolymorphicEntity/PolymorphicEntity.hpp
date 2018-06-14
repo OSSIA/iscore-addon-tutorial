@@ -6,33 +6,33 @@
 namespace Tutorial
 {
 class PolymorphicEntity :
-        public score::Entity<PolymorphicEntity>,
-        public score::SerializableInterface<PolymorphicElementFactory>
+    public score::Entity<PolymorphicEntity>,
+    public score::SerializableInterface<PolymorphicElementFactory>
 {
-        Q_OBJECT
-        SCORE_SERIALIZE_FRIENDS
+  W_OBJECT(PolymorphicEntity)
+  SCORE_SERIALIZE_FRIENDS
 
-    public:
-        PolymorphicEntity(
-                const Id<PolymorphicEntity>& id,
-                QObject* parent);
+  public:
+    PolymorphicEntity(
+      const Id<PolymorphicEntity>& id,
+      QObject* parent);
 
-        template<typename Impl>
-        PolymorphicEntity(
-                Impl& vis,
-                QObject* parent) :
-            score::Entity<PolymorphicEntity>{vis, parent}
-        {
-            vis.writeTo(*this);
-        }
+  template<typename Impl>
+  PolymorphicEntity(
+      Impl& vis,
+      QObject* parent) :
+    score::Entity<PolymorphicEntity>{vis, parent}
+  {
+    vis.writeTo(*this);
+  }
 
 
-        ~PolymorphicEntity();
+  ~PolymorphicEntity();
 
-        virtual int someVirtualMethod() const = 0;
+  virtual int someVirtualMethod() const = 0;
 
 };
 }
 
 #define POLYMORPHIC_ENTITY_METADATA(Export, Model, Uuid, ObjectKey, PrettyName) \
-    MODEL_METADATA(Export, Tutorial::PolymorphicElementFactory, Model, Uuid, ObjectKey, PrettyName)
+  MODEL_METADATA(Export, Tutorial::PolymorphicElementFactory, Model, Uuid, ObjectKey, PrettyName)

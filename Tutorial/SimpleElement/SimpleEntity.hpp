@@ -4,13 +4,12 @@
 namespace Tutorial
 {
 class SimpleEntity final :
-        public score::Entity<SimpleEntity>
+    public score::Entity<SimpleEntity>
 {
-        Q_OBJECT
+  W_OBJECT(SimpleEntity)
 
-    public:
-        SimpleEntity(const Id<SimpleEntity>& id, QObject* parent);
-
-        ~SimpleEntity();
+public:
+  SimpleEntity(const Id<SimpleEntity>& id, QObject* parent);
+  ~SimpleEntity() override;
 };
 }
