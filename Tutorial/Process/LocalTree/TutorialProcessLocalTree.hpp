@@ -1,6 +1,6 @@
 #pragma once
-#include <Engine/LocalTree/Scenario/ProcessComponent.hpp>
-#include <Engine/LocalTree/LocalTreeComponent.hpp>
+#include <LocalTree/Scenario/ProcessComponent.hpp>
+#include <LocalTree/LocalTreeComponent.hpp>
 
 namespace Tutorial
 {
@@ -9,7 +9,7 @@ class ProcessModel;
 //! This component displays informations about an object in the Device Explorer,
 //! in the left panel.
 class LocalTreeProcessComponent :
-    public Engine::LocalTree::ProcessComponent_T<ProcessModel>
+    public LocalTree::ProcessComponent_T<ProcessModel>
 {
   COMPONENT_METADATA("b387ed01-831a-487d-8686-42094813f2a7")
 
@@ -18,14 +18,14 @@ class LocalTreeProcessComponent :
       const Id<score::Component>& id,
       ossia::net::node_base& parent,
       Tutorial::ProcessModel& scenario,
-      Engine::LocalTree::DocumentPlugin& doc,
+      LocalTree::DocumentPlugin& doc,
       QObject* parent_obj);
 
   ~LocalTreeProcessComponent() override;
 
 private:
-  std::unique_ptr<Engine::LocalTree::BaseProperty> m_bananaProperty;
+  std::unique_ptr<LocalTree::BaseProperty> m_bananaProperty;
 };
 
-using LocalTreeProcessComponentFactory = Engine::LocalTree::ProcessComponentFactory_T<LocalTreeProcessComponent>;
+using LocalTreeProcessComponentFactory = LocalTree::ProcessComponentFactory_T<LocalTreeProcessComponent>;
 }

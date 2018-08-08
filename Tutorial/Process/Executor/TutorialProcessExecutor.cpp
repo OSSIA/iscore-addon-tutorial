@@ -1,6 +1,8 @@
 #include "TutorialProcessExecutor.hpp"
 #include <Tutorial/Process/TutorialProcessModel.hpp>
+#include <Process/ExecutionContext.hpp>
 #include <ossia/dataflow/port.hpp>
+#include <ossia/network/base/node.hpp>
 
 namespace Tutorial
 {
@@ -26,7 +28,7 @@ public:
     {
       if(auto p = n->get_parameter())
       {
-        f.insert(*p, ossia::tvalue{1.234f});
+        f.insert(*p, ossia::typed_value{1.234f});
       }
     }
 
@@ -72,7 +74,7 @@ public:
 
 ProcessExecutorComponent::ProcessExecutorComponent(
     Tutorial::ProcessModel& element,
-    const Engine::Execution::Context& ctx,
+    const Execution::Context& ctx,
     const Id<score::Component>& id,
     QObject* parent):
   ProcessComponent_T{element, ctx, id, "TutorialExecutorComponent", parent}

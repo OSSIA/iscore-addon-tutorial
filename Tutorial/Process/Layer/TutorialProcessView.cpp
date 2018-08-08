@@ -16,28 +16,33 @@ TutorialView::TutorialView(
 {
   this->setFlag(QGraphicsItem::ItemClipsToShape, true);
   this->setFlag(QGraphicsItem::ItemClipsChildrenToShape, true);
-  auto widget = new QQuickWidget(QUrl("qrc:///TutorialProcess.qml"));
-  widget->setClearColor(QColor("#19456B"));
-  widget->setResizeMode(QQuickWidget::ResizeMode::SizeRootObjectToView);
 
-  auto subw = new QGraphicsProxyWidget{this};
-  subw->setWidget(widget);
+  m_widget = new QQuickWidget(QUrl("qrc:///TutorialProcess.qml"));
+  m_widget->setClearColor(QColor("#19456B"));
+  m_widget->setResizeMode(QQuickWidget::ResizeMode::SizeRootObjectToView);
 
-  connect(this, &LayerView::heightChanged, this, [=] {
-    subw->setGeometry(QRectF{0, 50, this->width(), this->height() - 100});
-    widget->setMinimumSize((int)width(), (int)height() - 100);
-    widget->setMaximumSize((int)width(), (int)height() - 100);
-    widget->update();
-  });
-  connect(this, &LayerView::widthChanged, this, [=] {
-    subw->setGeometry(QRectF{0, 50, this->width(), this->height() - 100});
-    widget->setMinimumSize((int)width(), (int)height() - 100);
-    widget->setMaximumSize((int)width(), (int)height() - 100);
-    widget->update();
-  });
-  subw->update();
+  m_proxy = new QGraphicsProxyWidget{this};
+  m_proxy->setWidget(m_widget);
+
+  m_proxy->update();
 }
 
+
+void TutorialView::heightChanged(qreal h)
+{
+  m_proxy->setGeometry(QRectF{0, 50, this->width(), this->height() - 100});
+  m_widget->setMinimumSize((int)width(), (int)height() - 100);
+  m_widget->setMaximumSize((int)width(), (int)height() - 100);
+  m_widget->update();
+}
+
+void TutorialView::widthChanged(qreal w)
+{
+  m_proxy->setGeometry(QRectF{0, 50, this->width(), this->height() - 100});
+  m_widget->setMinimumSize((int)width(), (int)height() - 100);
+  m_widget->setMaximumSize((int)width(), (int)height() - 100);
+  m_widget->update();
+}
 void TutorialView::setText(const QString& txt)
 {
     m_text = txt;

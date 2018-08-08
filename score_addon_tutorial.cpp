@@ -122,9 +122,9 @@ score_addon_tutorial::factories(
            Tutorial::LayerFactory>,
         FW<Process::InspectorWidgetDelegateFactory,
            Tutorial::InspectorFactory>,
-        FW<Engine::Execution::ProcessComponentFactory,
+        FW<Execution::ProcessComponentFactory,
           Tutorial::ProcessExecutorComponentFactory>,
-        FW<Engine::LocalTree::ProcessComponentFactory,
+        FW<LocalTree::ProcessComponentFactory,
            Tutorial::LocalTreeProcessComponentFactory>,
         FW<score::DocumentPluginFactory,
            Tutorial::DocumentPluginFactory>,
@@ -175,3 +175,6 @@ score_addon_tutorial::make_commands()
 
     return cmds;
 }
+
+#include <score/plugins/PluginInstances.hpp>
+SCORE_EXPORT_PLUGIN(score_addon_tutorial)

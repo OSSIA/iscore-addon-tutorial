@@ -31,23 +31,12 @@
  * one aims to give an overview of all the possibilities.
  */
 class score_addon_tutorial final :
-        public QObject,
         public score::Plugin_QtInterface,
         public score::FactoryInterface_QtInterface,
         public score::FactoryList_QtInterface,
         public score::ApplicationPlugin_QtInterface,
         public score::CommandFactory_QtInterface
 {
-        Q_OBJECT
-        Q_PLUGIN_METADATA(IID FactoryInterface_QtInterface_iid)
-        Q_INTERFACES(
-                score::Plugin_QtInterface
-                score::FactoryInterface_QtInterface
-                score::FactoryList_QtInterface
-                score::ApplicationPlugin_QtInterface
-                score::CommandFactory_QtInterface
-                )
-
   // Version, and unique identifier for the plug-in.
   // The uuid can be generated with "uuidgen" on linux or OS X.
   SCORE_PLUGIN_METADATA(1, "e8601d50-e29e-4437-8c65-fcee42655a0b")

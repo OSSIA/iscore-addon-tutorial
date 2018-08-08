@@ -1,6 +1,8 @@
 #pragma once
 #include <Process/LayerView.hpp>
 
+class QQuickWidget;
+class QGraphicsProxyWidget;
 namespace Tutorial
 {
 //! The View should only handle painting, and forwarding of
@@ -21,7 +23,11 @@ private:
   void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
   void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
 
+  void heightChanged(qreal h) override;
+  void widthChanged(qreal w) override;
   QString m_text;
+  QQuickWidget* m_widget{};
+  QGraphicsProxyWidget* m_proxy{};
 
 };
 }

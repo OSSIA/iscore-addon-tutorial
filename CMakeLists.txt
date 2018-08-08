@@ -67,7 +67,6 @@ qt5_add_resources(QRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources/Tutorial.qrc")
 
 # Creation of the library
 add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
-score_moc_headers(${PROJECT_NAME} score_addon_tutorial.hpp)
 
 # Code generation
 score_generate_command_list_file(${PROJECT_NAME} "${HDRS}")
