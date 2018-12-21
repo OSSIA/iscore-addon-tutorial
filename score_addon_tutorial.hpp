@@ -8,7 +8,7 @@
 #include <score/application/ApplicationContext.hpp>
 #include <score/command/CommandGeneratorMap.hpp>
 #include <score/command/Command.hpp>
-#include <score/plugins/customfactory/FactoryFamily.hpp>
+#include <score/plugins/InterfaceList.hpp>
 
 #include <QObject>
 #include <utility>

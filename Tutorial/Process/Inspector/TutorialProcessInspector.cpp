@@ -59,7 +59,7 @@ void InspectorWidget::on_entityRemoved(const PolymorphicEntity& e)
 
 void InspectorWidget::addBanana()
 {
-    m_dispatcher.submitCommand<AddBanana>(process());
+    m_dispatcher.submit<AddBanana>(process());
 }
 
 }

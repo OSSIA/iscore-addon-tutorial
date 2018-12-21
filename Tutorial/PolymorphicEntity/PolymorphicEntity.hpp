@@ -1,6 +1,6 @@
 #pragma once
 #include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
-#include <score/plugins/customfactory/SerializableInterface.hpp>
+#include <score/plugins/SerializableInterface.hpp>
 #include <score/model/Entity.hpp>
 
 namespace Tutorial

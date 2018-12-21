@@ -37,19 +37,19 @@ class ProcessModel final : public Process::ProcessModel
 
   PROPERTY(int, bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
 private:
-  QString prettyName() const override;
+  QString prettyName() const noexcept override;
   void startExecution() override;
   void stopExecution() override;
   void reset() override;
-  ProcessStateDataInterface*startStateData() const override;
-  ProcessStateDataInterface*endStateData() const override;
-  Selection selectableChildren() const override;
-  Selection selectedChildren() const override;
-  void setSelection(const Selection& s) const override;
+  ProcessStateDataInterface*startStateData() const noexcept override;
+  ProcessStateDataInterface*endStateData() const noexcept override;
+  Selection selectableChildren() const noexcept override;
+  Selection selectedChildren() const noexcept override;
+  void setSelection(const Selection& s) const noexcept override;
 
-  void setDurationAndScale(const TimeVal& newDuration) override;
-  void setDurationAndGrow(const TimeVal& newDuration) override;
-  void setDurationAndShrink(const TimeVal& newDuration) override;
+  void setDurationAndScale(const TimeVal& newDuration) noexcept override;
+  void setDurationAndGrow(const TimeVal& newDuration) noexcept override;
+  void setDurationAndShrink(const TimeVal& newDuration) noexcept override;
 
   int m_bananas{};
 };

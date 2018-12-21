@@ -90,7 +90,7 @@ void TutorialPresenter::on_doubleClicked()
 
       CommandDispatcher<> disp{m_context.context.commandStack};
 
-      disp.submitCommand<AddEntity>(
+      disp.submit<AddEntity>(
               m_layer, // The object on which it is applied
               factory_key // The factory that we used.
       );

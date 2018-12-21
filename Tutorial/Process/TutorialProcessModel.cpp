@@ -29,7 +29,7 @@ void ProcessModel::setBananas(int bananas)
     bananasChanged(bananas);
 }
 
-QString ProcessModel::prettyName() const
+QString ProcessModel::prettyName() const noexcept
 {
     return tr("Tutorial Process");
 }
@@ -46,39 +46,39 @@ void ProcessModel::reset()
 {
 }
 
-ProcessStateDataInterface* ProcessModel::startStateData() const
+ProcessStateDataInterface* ProcessModel::startStateData() const noexcept
 {
     return nullptr;
 }
 
-ProcessStateDataInterface* ProcessModel::endStateData() const
+ProcessStateDataInterface* ProcessModel::endStateData() const noexcept
 {
     return nullptr;
 }
 
-Selection ProcessModel::selectableChildren() const
+Selection ProcessModel::selectableChildren() const noexcept
 {
     return {};
 }
 
-Selection ProcessModel::selectedChildren() const
+Selection ProcessModel::selectedChildren() const noexcept
 {
     return {};
 }
 
-void ProcessModel::setSelection(const Selection& s) const
+void ProcessModel::setSelection(const Selection& s) const noexcept
 {
 }
 
-void ProcessModel::setDurationAndScale(const TimeVal& newDuration)
+void ProcessModel::setDurationAndScale(const TimeVal& newDuration) noexcept
 {
 }
 
-void ProcessModel::setDurationAndGrow(const TimeVal& newDuration)
+void ProcessModel::setDurationAndGrow(const TimeVal& newDuration) noexcept
 {
 }
 
-void ProcessModel::setDurationAndShrink(const TimeVal& newDuration)
+void ProcessModel::setDurationAndShrink(const TimeVal& newDuration) noexcept
 {
 }
 

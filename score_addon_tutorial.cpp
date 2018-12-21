@@ -12,7 +12,7 @@
 #include <Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.hpp>
 #include <Tutorial/Panel/TutorialPanelDelegate.hpp>
 
-#include <score/plugins/customfactory/FactorySetup.hpp>
+#include <score/plugins/FactorySetup.hpp>
 
 score_addon_tutorial::score_addon_tutorial()
 {
