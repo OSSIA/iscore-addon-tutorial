@@ -1,0 +1,9 @@
+{
+    "src": "https://github.com/OSSIA/score-addon-tutorial/archive/master.zip",
+    "name": "Tutorial",
+    "version": "1.0",
+    "short": "Tutorial add-on, learn to build your own addons for score",
+    "long": "This addon provides example implementations of the various classes of score. See the ReadMe folder for some additional explanations.",
+    "small": "https://raw.githubusercontent.com/OSSIA/score-addon-tutorial/master/Deployment/icon.png",
+    "key": "e8601d50-e29e-4437-8c65-fcee42655a0b"
+}
