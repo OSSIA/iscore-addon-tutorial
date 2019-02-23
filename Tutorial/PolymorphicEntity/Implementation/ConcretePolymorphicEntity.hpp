@@ -16,40 +16,37 @@ POLYMORPHIC_ENTITY_METADATA(
 
 namespace Tutorial
 {
-  // A concrete class that will be used for instance in Tutorial::ProcessModel
-  class ConcretePolymorphicEntity final : public PolymorphicEntity
+// A concrete class that will be used for instance in Tutorial::ProcessModel
+class ConcretePolymorphicEntity final : public PolymorphicEntity
+{
+  // Necessary for signals / slots, so not strictly necessary here.
+  W_OBJECT(ConcretePolymorphicEntity)
+
+  // Necessary to allow the JSONReader, etc. functions to access private
+  // members.
+  SCORE_SERIALIZE_FRIENDS
+
+  // Default implementations for the functions defined in
+  // score::SerializableInterface.
+  MODEL_METADATA_IMPL(ConcretePolymorphicEntity)
+
+public:
+  // Standard constructor
+  ConcretePolymorphicEntity(const Id<PolymorphicEntity>& id, QObject* parent);
+
+  // Load constructor
+  template <typename Impl>
+  ConcretePolymorphicEntity(Impl& vis, QObject* parent)
+      : PolymorphicEntity{vis, parent}
   {
-    // Necessary for signals / slots, so not strictly necessary here.
-    W_OBJECT(ConcretePolymorphicEntity)
+    vis.writeTo(*this);
+  }
 
-    // Necessary to allow the JSONReader, etc. functions to access private members.
-    SCORE_SERIALIZE_FRIENDS
+  int someVirtualMethod() const override;
+};
 
-    // Default implementations for the functions defined in score::SerializableInterface.
-    MODEL_METADATA_IMPL(ConcretePolymorphicEntity)
-
-  public:
-    // Standard constructor
-    ConcretePolymorphicEntity(
-          const Id<PolymorphicEntity>& id,
-          QObject* parent);
-
-    // Load constructor
-    template<typename Impl>
-    ConcretePolymorphicEntity(
-          Impl& vis,
-          QObject* parent) :
-      PolymorphicEntity{vis, parent}
-    {
-      vis.writeTo(*this);
-    }
-
-
-    int someVirtualMethod() const override;
-  };
-
-  // Thanks to the generic factory we wrote earlier, the definition
-  // for this particular class's factory is a single line.
-  using ConcretePolymorphicElementFactory =
-  PolymorphicElementFactory_T<ConcretePolymorphicEntity>;
+// Thanks to the generic factory we wrote earlier, the definition
+// for this particular class's factory is a single line.
+using ConcretePolymorphicElementFactory
+    = PolymorphicElementFactory_T<ConcretePolymorphicEntity>;
 }

@@ -8,10 +8,9 @@ namespace Tutorial
 
 ConcretePolymorphicEntity::ConcretePolymorphicEntity(
     const Id<PolymorphicEntity>& id,
-    QObject* parent):
-  PolymorphicEntity{id, parent}
+    QObject* parent)
+    : PolymorphicEntity{id, parent}
 {
-
 }
 
 int ConcretePolymorphicEntity::someVirtualMethod() const
@@ -25,27 +24,23 @@ int ConcretePolymorphicEntity::someVirtualMethod() const
 // This is because the serialization mechanism will
 // be called from the point of view of the PolymorphicElement class.
 template <>
-void DataStreamReader::read(
-    const Tutorial::ConcretePolymorphicEntity& p)
+void DataStreamReader::read(const Tutorial::ConcretePolymorphicEntity& p)
 {
   insertDelimiter();
 }
 
 template <>
-void DataStreamWriter::write(
-    Tutorial::ConcretePolymorphicEntity& p)
+void DataStreamWriter::write(Tutorial::ConcretePolymorphicEntity& p)
 {
   checkDelimiter();
 }
 
 template <>
-void JSONObjectReader::read(
-    const Tutorial::ConcretePolymorphicEntity& p)
+void JSONObjectReader::read(const Tutorial::ConcretePolymorphicEntity& p)
 {
 }
 
 template <>
-void JSONObjectWriter::write(
-    Tutorial::ConcretePolymorphicEntity& p)
+void JSONObjectWriter::write(Tutorial::ConcretePolymorphicEntity& p)
 {
 }

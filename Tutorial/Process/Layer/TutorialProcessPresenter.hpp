@@ -1,11 +1,13 @@
 #pragma once
+#include <Process/Focus/FocusDispatcher.hpp>
 #include <Process/LayerPresenter.hpp>
-#include <Tutorial/Process/Layer/TutorialProcessLayer.hpp>
+#include <Process/ZoomHelper.hpp>
+
+#include <score/model/Identifier.hpp>
+
 #include <QPoint>
 
-#include <Process/ZoomHelper.hpp>
-#include <score/model/Identifier.hpp>
-#include <Process/Focus/FocusDispatcher.hpp>
+#include <Tutorial/Process/Layer/TutorialProcessLayer.hpp>
 
 namespace Tutorial
 {
@@ -13,8 +15,7 @@ class ProcessModel;
 class TutorialView;
 //! The Presenter should update the view with the data of the model
 //! and create commands to react to user actions in the view.
-class TutorialPresenter final :
-    public Process::LayerPresenter
+class TutorialPresenter final : public Process::LayerPresenter
 {
 public:
   explicit TutorialPresenter(

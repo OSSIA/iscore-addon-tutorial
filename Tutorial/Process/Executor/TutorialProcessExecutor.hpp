@@ -18,22 +18,22 @@ namespace Tutorial
 {
 class ProcessModel;
 
-//! Component and bridge between the GUI / Edition thread and the execution thread.
-class ProcessExecutorComponent final :
-    public Execution::ProcessComponent_T<
-    Tutorial::ProcessModel, ossia::node_process>
+//! Component and bridge between the GUI / Edition thread and the execution
+//! thread.
+class ProcessExecutorComponent final
+    : public Execution::
+          ProcessComponent_T<Tutorial::ProcessModel, ossia::node_process>
 {
   COMPONENT_METADATA("4797971b-54cd-43e5-8514-e2e941303d1a")
-  public:
-    ProcessExecutorComponent(
+public:
+  ProcessExecutorComponent(
       ProcessModel& element,
       const Execution::Context& ctx,
       const Id<score::Component>& id,
       QObject* parent);
 };
 
-
-using ProcessExecutorComponentFactory =
-Execution::ProcessComponentFactory_T<ProcessExecutorComponent>;
+using ProcessExecutorComponentFactory
+    = Execution::ProcessComponentFactory_T<ProcessExecutorComponent>;
 
 }

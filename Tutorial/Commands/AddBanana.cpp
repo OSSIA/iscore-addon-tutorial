@@ -1,13 +1,10 @@
 #include "AddBanana.hpp"
+
 #include <score/model/path/PathSerialization.hpp>
 
 namespace Tutorial
 {
-AddBanana::AddBanana(
-    const Tutorial::ProcessModel& model):
-  m_model{model}
-{
-}
+AddBanana::AddBanana(const Tutorial::ProcessModel& model) : m_model{model} {}
 
 void AddBanana::undo(const score::DocumentContext& ctx) const
 {

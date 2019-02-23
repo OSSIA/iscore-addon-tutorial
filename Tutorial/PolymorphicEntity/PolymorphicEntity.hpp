@@ -1,38 +1,40 @@
 #pragma once
-#include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
-#include <score/plugins/SerializableInterface.hpp>
 #include <score/model/Entity.hpp>
+#include <score/plugins/SerializableInterface.hpp>
+
+#include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
 
 namespace Tutorial
 {
-class PolymorphicEntity :
-    public score::Entity<PolymorphicEntity>,
-    public score::SerializableInterface<PolymorphicElementFactory>
+class PolymorphicEntity
+    : public score::Entity<PolymorphicEntity>,
+      public score::SerializableInterface<PolymorphicElementFactory>
 {
   W_OBJECT(PolymorphicEntity)
   SCORE_SERIALIZE_FRIENDS
 
-  public:
-    PolymorphicEntity(
-      const Id<PolymorphicEntity>& id,
-      QObject* parent);
+public:
+  PolymorphicEntity(const Id<PolymorphicEntity>& id, QObject* parent);
 
-  template<typename Impl>
-  PolymorphicEntity(
-      Impl& vis,
-      QObject* parent) :
-    score::Entity<PolymorphicEntity>{vis, parent}
+  template <typename Impl>
+  PolymorphicEntity(Impl& vis, QObject* parent)
+      : score::Entity<PolymorphicEntity>{vis, parent}
   {
     vis.writeTo(*this);
   }
 
-
   ~PolymorphicEntity();
 
   virtual int someVirtualMethod() const = 0;
-
 };
 }
 
-#define POLYMORPHIC_ENTITY_METADATA(Export, Model, Uuid, ObjectKey, PrettyName) \
-  MODEL_METADATA(Export, Tutorial::PolymorphicElementFactory, Model, Uuid, ObjectKey, PrettyName)
+#define POLYMORPHIC_ENTITY_METADATA(            \
+    Export, Model, Uuid, ObjectKey, PrettyName) \
+  MODEL_METADATA(                               \
+      Export,                                   \
+      Tutorial::PolymorphicElementFactory,      \
+      Model,                                    \
+      Uuid,                                     \
+      ObjectKey,                                \
+      PrettyName)

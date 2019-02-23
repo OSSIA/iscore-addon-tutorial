@@ -1,11 +1,11 @@
 #pragma once
 #include <Process/Process.hpp>
-#include <Tutorial/Process/TutorialProcessMetadata.hpp>
-
-#include <Tutorial/SimpleElement/SimpleElement.hpp>
-#include <Tutorial/PolymorphicEntity/PolymorphicEntity.hpp>
 
 #include <score/model/EntityMap.hpp>
+
+#include <Tutorial/PolymorphicEntity/PolymorphicEntity.hpp>
+#include <Tutorial/Process/TutorialProcessMetadata.hpp>
+#include <Tutorial/SimpleElement/SimpleElement.hpp>
 
 namespace Tutorial
 {
@@ -16,14 +16,14 @@ class ProcessModel final : public Process::ProcessModel
 
   W_OBJECT(ProcessModel)
 
-  public:
-    ProcessModel(const TimeVal& duration,
-                 const Id<Process::ProcessModel>& id,
-                 QObject* parent);
+public:
+  ProcessModel(
+      const TimeVal& duration,
+      const Id<Process::ProcessModel>& id,
+      QObject* parent);
 
-  template<typename Impl>
-  ProcessModel(Impl& vis, QObject* parent) :
-    Process::ProcessModel{vis, parent}
+  template <typename Impl>
+  ProcessModel(Impl& vis, QObject* parent) : Process::ProcessModel{vis, parent}
   {
     vis.writeTo(*this);
   }
@@ -41,8 +41,8 @@ private:
   void startExecution() override;
   void stopExecution() override;
   void reset() override;
-  ProcessStateDataInterface*startStateData() const noexcept override;
-  ProcessStateDataInterface*endStateData() const noexcept override;
+  ProcessStateDataInterface* startStateData() const noexcept override;
+  ProcessStateDataInterface* endStateData() const noexcept override;
   Selection selectableChildren() const noexcept override;
   Selection selectedChildren() const noexcept override;
   void setSelection(const Selection& s) const noexcept override;

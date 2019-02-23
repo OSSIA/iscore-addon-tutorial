@@ -1,17 +1,21 @@
 #pragma once
 #include <score/command/Command.hpp>
-#include <Tutorial/Process/TutorialProcessModel.hpp>
+
 #include <Tutorial/Commands/TutorialCommandFactory.hpp>
 #include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
+#include <Tutorial/Process/TutorialProcessModel.hpp>
 
 namespace Tutorial
 {
-class AddEntity: public score::Command
+class AddEntity : public score::Command
 {
-  SCORE_COMMAND_DECL(Tutorial::CommandFactoryName(), AddEntity, "Add a polymorphic entity")
+  SCORE_COMMAND_DECL(
+      Tutorial::CommandFactoryName(),
+      AddEntity,
+      "Add a polymorphic entity")
 
-  public:
-    AddEntity(
+public:
+  AddEntity(
       const Tutorial::ProcessModel& model,
       PolymorphicElementFactory::ConcreteKey key);
 
@@ -19,8 +23,8 @@ class AddEntity: public score::Command
   void redo(const score::DocumentContext& ctx) const override;
 
 protected:
-  void serializeImpl(DataStreamInput & s) const override;
-  void deserializeImpl(DataStreamOutput & s) override;
+  void serializeImpl(DataStreamInput& s) const override;
+  void deserializeImpl(DataStreamOutput& s) override;
 
 private:
   Path<ProcessModel> m_model;

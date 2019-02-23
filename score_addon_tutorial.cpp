@@ -1,41 +1,34 @@
 #include "score_addon_tutorial.hpp"
-#include <score_addon_tutorial_commands_files.hpp>
-
-#include <Tutorial/Process/TutorialProcessFactory.hpp>
-#include <Tutorial/Process/Executor/TutorialProcessExecutor.hpp>
-#include <Tutorial/Process/Inspector/TutorialProcessInspector.hpp>
-#include <Tutorial/Process/LocalTree/TutorialProcessLocalTree.hpp>
-#include <Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp>
-#include <Tutorial/ApplicationPlugin/TutorialApplicationPlugin.hpp>
-#include <Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp>
-#include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
-#include <Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.hpp>
-#include <Tutorial/Panel/TutorialPanelDelegate.hpp>
 
 #include <score/plugins/FactorySetup.hpp>
 
-score_addon_tutorial::score_addon_tutorial()
-{
+#include <Tutorial/ApplicationPlugin/TutorialApplicationPlugin.hpp>
+#include <Tutorial/DocumentPlugin/TutorialDocumentPlugin.hpp>
+#include <Tutorial/Panel/TutorialPanelDelegate.hpp>
+#include <Tutorial/PolymorphicEntity/Implementation/ConcretePolymorphicEntity.hpp>
+#include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
+#include <Tutorial/Process/Executor/TutorialProcessExecutor.hpp>
+#include <Tutorial/Process/Inspector/TutorialProcessInspector.hpp>
+#include <Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp>
+#include <Tutorial/Process/LocalTree/TutorialProcessLocalTree.hpp>
+#include <Tutorial/Process/TutorialProcessFactory.hpp>
+#include <score_addon_tutorial_commands_files.hpp>
 
-}
+score_addon_tutorial::score_addon_tutorial() {}
 
-score_addon_tutorial::~score_addon_tutorial()
-{
-
-}
+score_addon_tutorial::~score_addon_tutorial() {}
 
 /**
  * @brief score_addon_tutorial::required
  * @return Features that this plug-in requires.
  *
  * If a feature is listed here, i-score will load the
- * plug-in providing this feature (through \ref score::Plugin_QtInterface::offered)
- * before this one.
+ * plug-in providing this feature (through \ref
+ * score::Plugin_QtInterface::offered) before this one.
  */
-auto score_addon_tutorial::required() const
-  -> std::vector<score::PluginKey>
+auto score_addon_tutorial::required() const -> std::vector<score::PluginKey>
 {
-    return {};
+  return {};
 }
 
 /**
@@ -47,11 +40,10 @@ auto score_addon_tutorial::required() const
  * it in the current version.
  */
 void score_addon_tutorial::updateSaveFile(
-        QJsonObject& obj,
-        score::Version obj_version,
-        score::Version current_version)
+    QJsonObject& obj,
+    score::Version obj_version,
+    score::Version current_version)
 {
-
 }
 
 /**
@@ -61,21 +53,21 @@ void score_addon_tutorial::updateSaveFile(
  *
  * For instance, a new interface to display some elements in a toolbar.
  *
- * Elements registered here can then be used through an \ref score::ApplicationContext
- * instance :
+ * Elements registered here can then be used through an \ref
+ * score::ApplicationContext instance :
  *
  * \code
  * auto& ctx = score::AppContext();
- * auto& my_factories = ctx.interfaces<Tutorial::PolymorphicElementFactoryList>();
- * \endcode
+ * auto& my_factories =
+ * ctx.interfaces<Tutorial::PolymorphicElementFactoryList>(); \endcode
  */
-std::vector<std::unique_ptr<score::InterfaceListBase> >
+std::vector<std::unique_ptr<score::InterfaceListBase>>
 score_addon_tutorial::factoryFamilies()
 {
-    return make_ptr_vector<score::InterfaceListBase,
-            Tutorial::PolymorphicElementFactoryList>();
+  return make_ptr_vector<
+      score::InterfaceListBase,
+      Tutorial::PolymorphicElementFactoryList>();
 }
-
 
 /**
  * @brief score_addon_tutorial::factories
@@ -107,37 +99,31 @@ score_addon_tutorial::factoryFamilies()
  * However, it should rarely be necessary to access a particular factory.
  * The general case should be getting a factory according to an user input.
  */
-std::vector<std::unique_ptr<score::InterfaceBase> >
+std::vector<std::unique_ptr<score::InterfaceBase>>
 score_addon_tutorial::factories(
-        const score::ApplicationContext& ctx,
-        const score::InterfaceKey& key) const
+    const score::ApplicationContext& ctx,
+    const score::InterfaceKey& key) const
 {
-    return instantiate_factories<
-            score::ApplicationContext,
-        FW<
-           Process::ProcessModelFactory, // An abstract factory
-           Tutorial::ProcessFactory // followed by all the matching concrete factories
-          >,
-        FW<Process::LayerFactory,
-           Tutorial::LayerFactory>,
-        FW<Process::InspectorWidgetDelegateFactory,
-           Tutorial::InspectorFactory>,
-        FW<Execution::ProcessComponentFactory,
-          Tutorial::ProcessExecutorComponentFactory>,
-        FW<LocalTree::ProcessComponentFactory,
-           Tutorial::LocalTreeProcessComponentFactory>,
-        FW<score::DocumentPluginFactory,
-           Tutorial::DocumentPluginFactory>,
-        FW<score::PanelDelegateFactory,
-           Tutorial::PanelDelegateFactory,
-            Tutorial::QMLPanelDelegateFactory
-            >,
-        FW<
-           // This abstract factory was defined inside the tutorial plug-in :
-           Tutorial::PolymorphicElementFactory,
-           Tutorial::ConcretePolymorphicElementFactory
-          >
-    >(ctx, key);
+  return instantiate_factories<
+      score::ApplicationContext,
+      FW<Process::ProcessModelFactory, // An abstract factory
+         Tutorial::ProcessFactory      // followed by all the matching concrete
+                                       // factories
+         >,
+      FW<Process::LayerFactory, Tutorial::LayerFactory>,
+      FW<Process::InspectorWidgetDelegateFactory, Tutorial::InspectorFactory>,
+      FW<Execution::ProcessComponentFactory,
+         Tutorial::ProcessExecutorComponentFactory>,
+      FW<LocalTree::ProcessComponentFactory,
+         Tutorial::LocalTreeProcessComponentFactory>,
+      FW<score::DocumentPluginFactory, Tutorial::DocumentPluginFactory>,
+      FW<score::PanelDelegateFactory,
+         Tutorial::PanelDelegateFactory,
+         Tutorial::QMLPanelDelegateFactory>,
+      FW<
+          // This abstract factory was defined inside the tutorial plug-in :
+          Tutorial::PolymorphicElementFactory,
+          Tutorial::ConcretePolymorphicElementFactory>>(ctx, key);
 }
 
 /**
@@ -146,11 +132,10 @@ score_addon_tutorial::factories(
  * This function allows to instantiate an application-wide object.
  * These objects are instantiated before any factory.
  */
-score::GUIApplicationPlugin*
-score_addon_tutorial::make_guiApplicationPlugin(
-        const score::GUIApplicationContext& app)
+score::GUIApplicationPlugin* score_addon_tutorial::make_guiApplicationPlugin(
+    const score::GUIApplicationContext& app)
 {
-    return new Tutorial::ApplicationPlugin{app};
+  return new Tutorial::ApplicationPlugin{app};
 }
 
 /**
@@ -161,19 +146,19 @@ score_addon_tutorial::make_guiApplicationPlugin(
 std::pair<const CommandGroupKey, CommandGeneratorMap>
 score_addon_tutorial::make_commands()
 {
-    using namespace Tutorial;
-    std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{
-        CommandFactoryName(),
-        CommandGeneratorMap{}};
+  using namespace Tutorial;
+  std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{
+      CommandFactoryName(), CommandGeneratorMap{}};
 
-    // CMake generates the "addon_commands.hpp" and "addon_commands_file.hpp"
-    // by scanning the source files for \ref SCORE_COMMAND_DECL or \ref SCORE_COMMAND_DECL_T.
+  // CMake generates the "addon_commands.hpp" and "addon_commands_file.hpp"
+  // by scanning the source files for \ref SCORE_COMMAND_DECL or \ref
+  // SCORE_COMMAND_DECL_T.
 
-    ossia::for_each_type<
-    #include <score_addon_tutorial_commands.hpp>
-        >(score::commands::FactoryInserter{cmds.second});
+  ossia::for_each_type<
+#include <score_addon_tutorial_commands.hpp>
+      >(score::commands::FactoryInserter{cmds.second});
 
-    return cmds;
+  return cmds;
 }
 
 #include <score/plugins/PluginInstances.hpp>

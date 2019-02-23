@@ -1,18 +1,18 @@
 #include "AddEntity.hpp"
-#include <score/model/path/PathSerialization.hpp>
+
 #include <score/application/ApplicationContext.hpp>
-#include <score/tools/IdentifierGeneration.hpp>
-#include <ossia/detail/logger.hpp>
 #include <score/document/DocumentContext.hpp>
+#include <score/model/path/PathSerialization.hpp>
+#include <score/tools/IdentifierGeneration.hpp>
+
+#include <ossia/detail/logger.hpp>
 
 namespace Tutorial
 {
 AddEntity::AddEntity(
     const Tutorial::ProcessModel& model,
-    PolymorphicElementFactory::ConcreteKey key):
-  m_model{model},
-  m_key{key},
-  m_id{getStrongId(model.polymorphicEntities)}
+    PolymorphicElementFactory::ConcreteKey key)
+    : m_model{model}, m_key{key}, m_id{getStrongId(model.polymorphicEntities)}
 {
   // Notice how we generate the identifier in the constructor.
   // This is because if later commands refer to the object
@@ -35,19 +35,16 @@ void AddEntity::redo(const score::DocumentContext& ctx) const
   Tutorial::ProcessModel& proc = m_model.find(ctx);
 
   //! Find the factory
-  auto factory = ctx.app
-      .interfaces<PolymorphicElementFactoryList>()
-      .get(m_key);
-  if(factory)
+  auto factory
+      = ctx.app.interfaces<PolymorphicElementFactoryList>().get(m_key);
+  if (factory)
   {
     // The container
-    proc.polymorphicEntities
-        .add( // Add to it
-              factory->make( // A new factory
-                             m_id, // With the generated id
-                             &proc // The parent is the process
-                             )
-              );
+    proc.polymorphicEntities.add( // Add to it
+        factory->make(            // A new factory
+            m_id,                 // With the generated id
+            &proc                 // The parent is the process
+            ));
   }
   else
   {

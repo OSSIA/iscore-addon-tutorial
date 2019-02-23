@@ -3,8 +3,7 @@
 
 namespace Tutorial
 {
-class SimpleEntity final :
-    public score::Entity<SimpleEntity>
+class SimpleEntity final : public score::Entity<SimpleEntity>
 {
   W_OBJECT(SimpleEntity)
 

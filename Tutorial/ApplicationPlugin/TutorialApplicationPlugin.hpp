@@ -7,7 +7,8 @@ namespace Tutorial
  * @brief The ApplicationPlugin class
  *
  * The ApplicationPlugin is a class that will be instantiated only once.
- * It is accessible in the whole application, by using an \ref score::ApplicationContext instance.
+ * It is accessible in the whole application, by using an \ref
+ * score::ApplicationContext instance.
  *
  * For instance:
  *
@@ -19,21 +20,19 @@ namespace Tutorial
  * Most of the time this is used to have ownership on some global data,
  * without enforcing the existence of a singleton at the type level.
  *
- * It is also used to add document plug-ins to a newly created or loaded document.
+ * It is also used to add document plug-ins to a newly created or loaded
+ * document.
  */
-class ApplicationPlugin final :
-    public score::GUIApplicationPlugin
+class ApplicationPlugin final : public score::GUIApplicationPlugin
 {
 public:
-  ApplicationPlugin(
-      const score::GUIApplicationContext& app);
+  ApplicationPlugin(const score::GUIApplicationContext& app);
 
 protected:
   void on_newDocument(score::Document& doc) override;
 
-  void on_documentChanged(
-      score::Document* olddoc,
-      score::Document* newdoc) override;
+  void on_documentChanged(score::Document* olddoc, score::Document* newdoc)
+      override;
 
   score::GUIElements makeGUIElements() override;
 

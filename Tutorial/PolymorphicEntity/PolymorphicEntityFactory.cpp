@@ -3,10 +3,7 @@
 namespace Tutorial
 {
 
-PolymorphicElementFactory::~PolymorphicElementFactory()
-{
-
-}
+PolymorphicElementFactory::~PolymorphicElementFactory() {}
 
 PolymorphicEntity* PolymorphicElementFactoryList::loadMissing(
     const VisitorVariant& vis,
