@@ -3,15 +3,16 @@
 #include <Tutorial/Commands/AddEntity.hpp>
 #include <Tutorial/Process/Layer/TutorialProcessPresenter.hpp>
 #include <Tutorial/Process/Layer/TutorialProcessView.hpp>
+#include <score/tools/Bind.hpp>
 
 namespace Tutorial
 {
 TutorialPresenter::TutorialPresenter(
     const ProcessModel& layer,
     TutorialView* view,
-    const Process::ProcessPresenterContext& ctx,
+    const Process::Context& ctx,
     QObject* parent)
-    : LayerPresenter{ctx, parent}, m_layer{layer}, m_view{view}
+    : LayerPresenter{layer, view,  ctx, parent}, m_view{view}
 {
   const Tutorial::ProcessModel& p = layer;
 
@@ -29,7 +30,7 @@ TutorialPresenter::TutorialPresenter(
       &TutorialPresenter::on_doubleClicked);
 }
 
-void TutorialPresenter::setWidth(qreal val)
+void TutorialPresenter::setWidth(qreal val, qreal defaultwidth)
 {
   m_view->setWidth(val);
 }
@@ -53,15 +54,6 @@ void TutorialPresenter::on_zoomRatioChanged(ZoomRatio) {}
 
 void TutorialPresenter::parentGeometryChanged() {}
 
-const Process::ProcessModel& TutorialPresenter::model() const
-{
-  return m_layer;
-}
-
-const Id<Process::ProcessModel>& TutorialPresenter::modelId() const
-{
-  return m_layer.id();
-}
 
 void TutorialPresenter::on_doubleClicked()
 {
@@ -88,7 +80,7 @@ void TutorialPresenter::on_doubleClicked()
     CommandDispatcher<> disp{m_context.context.commandStack};
 
     disp.submit<AddEntity>(
-        m_layer,    // The object on which it is applied
+        static_cast<const ProcessModel&>(m_process),    // The object on which it is applied
         factory_key // The factory that we used.
     );
   }

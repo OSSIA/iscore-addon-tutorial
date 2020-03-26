@@ -1,5 +1,6 @@
 #pragma once
 #include <score/plugins/Interface.hpp>
+#include <score/plugins/InterfaceList.hpp>
 #include <score/serialization/VisitorCommon.hpp>
 
 #include <score_addon_tutorial_export.h>

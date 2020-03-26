@@ -10,7 +10,7 @@ LocalTreeProcessComponent::LocalTreeProcessComponent(
     const Id<score::Component>& id,
     ossia::net::node_base& parent,
     Tutorial::ProcessModel& proc,
-    LocalTree::DocumentPlugin& sys,
+    const score::DocumentContext& sys,
     QObject* parent_obj)
     : LocalTree::ProcessComponent_T<Tutorial::ProcessModel>{
           parent,

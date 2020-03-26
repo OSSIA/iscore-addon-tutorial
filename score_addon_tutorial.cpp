@@ -12,6 +12,7 @@
 #include <Tutorial/Process/Layer/TutorialProcessLayerFactory.hpp>
 #include <Tutorial/Process/LocalTree/TutorialProcessLocalTree.hpp>
 #include <Tutorial/Process/TutorialProcessFactory.hpp>
+#include <score/model/EntitySerialization.hpp>
 #include <score_addon_tutorial_commands_files.hpp>
 
 score_addon_tutorial::score_addon_tutorial() {}

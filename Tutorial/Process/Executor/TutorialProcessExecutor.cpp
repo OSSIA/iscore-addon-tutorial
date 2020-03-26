@@ -6,6 +6,7 @@
 #include <ossia/network/base/node.hpp>
 
 #include <Tutorial/Process/TutorialProcessModel.hpp>
+#include <score/tools/Bind.hpp>
 
 namespace Tutorial
 {
@@ -17,12 +18,12 @@ public:
   double last_val{};
   tutorial_node()
   {
-    m_inlets.push_back(ossia::make_inlet<ossia::value_port>());
-    m_outlets.push_back(ossia::make_outlet<ossia::audio_port>());
+    m_inlets.push_back(new ossia::value_inlet());
+    m_outlets.push_back(new ossia::audio_outlet());
   }
 
   void
-  run(ossia::token_request tk, ossia::exec_state_facade f) noexcept override
+  run(const ossia::token_request& tk, ossia::exec_state_facade f) noexcept override
   {
     using namespace std;
 
@@ -38,11 +39,11 @@ public:
     // tk.prev_date : logical current date of the node
     // tk.date : logical new date of the node at the end of this tick
 
-    auto samples = tk.date - tk.prev_date;
-    if (samples > 0) // time is going forward
+    auto samples = (tk.date - tk.prev_date).impl;
+    if (tk.forward()) // time is going forward
     {
       // Fetch received input messages
-      auto& input = *m_inlets[0]->data.target<ossia::value_port>();
+      auto& input = *m_inlets[0]->target<ossia::value_port>();
       auto& messages = input.get_data();
 
       if (!messages.empty())
@@ -53,13 +54,13 @@ public:
       }
 
       // Write some audio
-      auto& output = *m_outlets[0]->data.target<ossia::audio_port>();
+      auto& output = *m_outlets[0]->target<ossia::audio_port>();
       output.samples.resize(1); // number of channels
 
       auto& chan = output.samples[0];
 
-      if (chan.size() < tk.offset + samples)
-        chan.resize(tk.offset + samples);
+      if (chan.size() < tk.offset.impl + samples)
+        chan.resize((tk.offset + samples).impl);
 
       const auto sr = f.sampleRate();
       for (int i = 0; i < samples; i++)

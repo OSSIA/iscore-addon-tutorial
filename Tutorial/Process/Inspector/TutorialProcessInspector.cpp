@@ -7,7 +7,7 @@
 #include <QFormLayout>
 #include <QLabel>
 #include <QPushButton>
-
+#include <score/tools/Bind.hpp>
 #include <Tutorial/Commands/AddBanana.hpp>
 
 namespace Tutorial

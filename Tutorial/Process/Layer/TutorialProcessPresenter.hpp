@@ -21,12 +21,12 @@ public:
   explicit TutorialPresenter(
       const ProcessModel& model,
       TutorialView* view,
-      const Process::ProcessPresenterContext& ctx,
+      const Process::Context& ctx,
       QObject* parent);
 
   // All the following functions are automatically called
   // by i-score when something is resize in the UI.
-  void setWidth(qreal width) override;
+  void setWidth(qreal width, qreal defaultwidth) override;
   void setHeight(qreal height) override;
 
   void putToFront() override;
@@ -36,13 +36,9 @@ public:
 
   void parentGeometryChanged() override;
 
-  const Process::ProcessModel& model() const override;
-  const Id<Process::ProcessModel>& modelId() const override;
-
 private:
   void on_doubleClicked();
 
-  const ProcessModel& m_layer;
   TutorialView* m_view{};
 };
 }

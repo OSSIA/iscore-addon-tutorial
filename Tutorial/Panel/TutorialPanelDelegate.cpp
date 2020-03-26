@@ -31,7 +31,7 @@ QWidget* PanelDelegate::widget()
 
 const score::PanelStatus& PanelDelegate::defaultPanelStatus() const
 {
-  static const score::PanelStatus status{true,
+  static const score::PanelStatus status{true, false,
                                          Qt::RightDockWidgetArea,
                                          10,
                                          QObject::tr("Tutorial"),
@@ -72,7 +72,7 @@ QWidget* QMLPanelDelegate::widget()
 
 const score::PanelStatus& QMLPanelDelegate::defaultPanelStatus() const
 {
-  static const score::PanelStatus status{true,
+  static const score::PanelStatus status{true, false,
                                          Qt::RightDockWidgetArea,
                                          100,
                                          QObject::tr("Tutorial QML"),

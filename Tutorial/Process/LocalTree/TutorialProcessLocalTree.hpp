@@ -1,6 +1,6 @@
 #pragma once
 #include <LocalTree/LocalTreeComponent.hpp>
-#include <LocalTree/Scenario/ProcessComponent.hpp>
+#include <LocalTree/ProcessComponent.hpp>
 
 namespace Tutorial
 {
@@ -18,7 +18,7 @@ public:
       const Id<score::Component>& id,
       ossia::net::node_base& parent,
       Tutorial::ProcessModel& scenario,
-      LocalTree::DocumentPlugin& doc,
+      const score::DocumentContext& doc,
       QObject* parent_obj);
 
   ~LocalTreeProcessComponent() override;

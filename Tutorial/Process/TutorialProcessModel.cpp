@@ -1,5 +1,7 @@
 #include "TutorialProcessModel.hpp"
-
+#include <score/application/ApplicationComponents.hpp>
+#include <score/plugins/SerializableHelpers.hpp>
+#include <score/model/EntitySerialization.hpp>
 #include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
 #include <wobjectimpl.h>
 
