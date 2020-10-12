@@ -6,7 +6,6 @@
 #include <QGraphicsProxyWidget>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
-#include <QQuickWidget>
 
 #include <wobjectimpl.h>
 W_OBJECT_IMPL(Tutorial::TutorialView)
@@ -17,31 +16,14 @@ TutorialView::TutorialView(QGraphicsItem* parent) : LayerView{parent}
 {
   this->setFlag(QGraphicsItem::ItemClipsToShape, true);
   this->setFlag(QGraphicsItem::ItemClipsChildrenToShape, true);
-
-  m_widget = new QQuickWidget(QUrl("qrc:///TutorialProcess.qml"));
-  m_widget->setClearColor(QColor("#19456B"));
-  m_widget->setResizeMode(QQuickWidget::ResizeMode::SizeRootObjectToView);
-
-  m_proxy = new QGraphicsProxyWidget{this};
-  m_proxy->setWidget(m_widget);
-
-  m_proxy->update();
 }
 
 void TutorialView::heightChanged(qreal h)
 {
-  m_proxy->setGeometry(QRectF{0, 50, this->width(), this->height() - 100});
-  m_widget->setMinimumSize((int)width(), (int)height() - 100);
-  m_widget->setMaximumSize((int)width(), (int)height() - 100);
-  m_widget->update();
 }
 
 void TutorialView::widthChanged(qreal w)
 {
-  m_proxy->setGeometry(QRectF{0, 50, this->width(), this->height() - 100});
-  m_widget->setMinimumSize((int)width(), (int)height() - 100);
-  m_widget->setMaximumSize((int)width(), (int)height() - 100);
-  m_widget->update();
 }
 void TutorialView::setText(const QString& txt)
 {

@@ -5,13 +5,6 @@
 #include <QColor>
 #include <QFormLayout>
 #include <QLabel>
-#include <QQmlComponent>
-#include <QQmlContext>
-#include <QQmlEngine>
-#include <QQuickItem>
-#include <QQuickView>
-#include <QQuickWidget>
-#include <QQuickWindow>
 namespace Tutorial
 {
 
