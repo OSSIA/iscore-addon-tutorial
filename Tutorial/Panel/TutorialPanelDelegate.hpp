@@ -33,33 +33,5 @@ class PanelDelegateFactory final : public score::PanelDelegateFactory
   make(const score::GUIApplicationContext& ctx) override;
 };
 
-/**
- * @brief A side-panel that uses QML to render its gui.
- */
-class QMLPanelDelegate final : public QObject, public score::PanelDelegate
-{
-public:
-  QMLPanelDelegate(const score::GUIApplicationContext& ctx);
-
-private:
-  QWidget* widget() override;
-
-  const score::PanelStatus& defaultPanelStatus() const override;
-
-  void on_modelChanged(score::MaybeDocument oldm, score::MaybeDocument newm)
-      override;
-
-  void setNewSelection(const Selection& s) override;
-
-  QWidget* m_widget{};
-};
-
-class QMLPanelDelegateFactory final : public score::PanelDelegateFactory
-{
-  SCORE_CONCRETE("3AB171A5-AB14-455A-B966-97E3898C86D4")
-
-  std::unique_ptr<score::PanelDelegate>
-  make(const score::GUIApplicationContext& ctx) override;
-};
 
 }

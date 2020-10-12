@@ -41,7 +41,7 @@ auto score_addon_tutorial::required() const -> std::vector<score::PluginKey>
  * it in the current version.
  */
 void score_addon_tutorial::updateSaveFile(
-    QJsonObject& obj,
+    rapidjson::Value& obj,
     score::Version obj_version,
     score::Version current_version)
 {
@@ -119,8 +119,7 @@ score_addon_tutorial::factories(
          Tutorial::LocalTreeProcessComponentFactory>,
       FW<score::DocumentPluginFactory, Tutorial::DocumentPluginFactory>,
       FW<score::PanelDelegateFactory,
-         Tutorial::PanelDelegateFactory,
-         Tutorial::QMLPanelDelegateFactory>,
+         Tutorial::PanelDelegateFactory>,
       FW<
           // This abstract factory was defined inside the tutorial plug-in :
           Tutorial::PolymorphicElementFactory,

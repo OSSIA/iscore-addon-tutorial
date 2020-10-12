@@ -51,7 +51,7 @@ private:
   std::vector<score::PluginKey> required() const override;
 
   void updateSaveFile(
-      QJsonObject& obj,
+      rapidjson::Value& obj,
       score::Version obj_version,
       score::Version current_version) override;
 

@@ -32,11 +32,11 @@ void DataStreamWriter::write(Tutorial::DocumentPlugin& plug)
 }
 
 template <>
-void JSONObjectReader::read(const Tutorial::DocumentPlugin& plug)
+void JSONReader::read(const Tutorial::DocumentPlugin& plug)
 {
 }
 
 template <>
-void JSONObjectWriter::write(Tutorial::DocumentPlugin& plug)
+void JSONWriter::write(Tutorial::DocumentPlugin& plug)
 {
 }

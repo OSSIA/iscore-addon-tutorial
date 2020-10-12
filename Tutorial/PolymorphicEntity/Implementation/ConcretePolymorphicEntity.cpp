@@ -36,11 +36,11 @@ void DataStreamWriter::write(Tutorial::ConcretePolymorphicEntity& p)
 }
 
 template <>
-void JSONObjectReader::read(const Tutorial::ConcretePolymorphicEntity& p)
+void JSONReader::read(const Tutorial::ConcretePolymorphicEntity& p)
 {
 }
 
 template <>
-void JSONObjectWriter::write(Tutorial::ConcretePolymorphicEntity& p)
+void JSONWriter::write(Tutorial::ConcretePolymorphicEntity& p)
 {
 }

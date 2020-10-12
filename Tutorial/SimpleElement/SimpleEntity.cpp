@@ -28,11 +28,11 @@ void DataStreamWriter::write(Tutorial::SimpleEntity& e)
 }
 
 template <>
-void JSONObjectReader::read(const Tutorial::SimpleEntity& e)
+void JSONReader::read(const Tutorial::SimpleEntity& e)
 {
 }
 
 template <>
-void JSONObjectWriter::write(Tutorial::SimpleEntity& e)
+void JSONWriter::write(Tutorial::SimpleEntity& e)
 {
 }

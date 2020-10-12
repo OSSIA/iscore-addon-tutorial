@@ -2,6 +2,7 @@
 #include <score/application/ApplicationComponents.hpp>
 #include <score/plugins/SerializableHelpers.hpp>
 #include <score/model/EntitySerialization.hpp>
+#include <score/model/EntityMapSerialization.hpp>
 #include <Tutorial/PolymorphicEntity/PolymorphicEntityFactory.hpp>
 #include <wobjectimpl.h>
 
@@ -162,26 +163,26 @@ void DataStreamWriter::write(Tutorial::ProcessModel& proc)
  * Some things are shorter to write, others are sometimes longer.
  */
 template <>
-void JSONObjectReader::read(const Tutorial::ProcessModel& proc)
+void JSONReader::read(const Tutorial::ProcessModel& proc)
 {
-  obj["SimpleElements"] = toJsonArray(proc.simpleElements);
-  obj["PolyElements"] = toJsonArray(proc.polymorphicEntities);
+  obj["SimpleElements"] = proc.simpleElements;
+  obj["PolyElements"] = proc.polymorphicEntities;
   obj["Bananas"] = proc.m_bananas;
 }
 
 template <>
-void JSONObjectWriter::write(Tutorial::ProcessModel& proc)
+void JSONWriter::write(Tutorial::ProcessModel& proc)
 {
   for (const auto& json_vref : obj["SimpleElements"].toArray())
   {
-    JSONObject::Deserializer deserializer{json_vref.toObject()};
+    JSONObject::Deserializer deserializer{json_vref};
     proc.simpleElements.add(new Tutorial::SimpleElement{deserializer, &proc});
   }
 
   auto& pl = components.interfaces<Tutorial::PolymorphicElementFactoryList>();
   for (const auto& json_vref : obj["PolyElements"].toArray())
   {
-    JSONObject::Deserializer deserializer{json_vref.toObject()};
+    JSONObject::Deserializer deserializer{json_vref};
     auto e = deserialize_interface(pl, deserializer, &proc);
     if (e)
     {
